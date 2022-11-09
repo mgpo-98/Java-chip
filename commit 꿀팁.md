@@ -1,4 +1,6 @@
-여긴 대문자
+### **끝에 본인 이름 넣기 - ex) ADD Accounts index [OOO]**
+
+## Commit 유형 : 대문자로
 
 - ADD : 만들기
 - UPDATE : 수정
@@ -10,17 +12,7 @@
 - TEST: 테스트 코트, 리펙토링 테스트 코드 추가
 - CHORE: 빌드 업무 수정, 패키지 매니저 수정(ex .gitignore 수정 같은 경우)
 
-```ba
+```
 git add file
 git commit -m "FIX 블라블라 [이름]"
 ```
-
-### 규칙
-
-##### 끝에 본인 이름 넣기 - ex) ADD Accounts index [OOO]
-
-##### 커밋 유형(ADD, FIX, UPDATE 등) 대문자
-
-**앱 첫 글자는 대문자로 시작**
-
-**제목 행 끝에 마침표를 넣지 않는다**
