@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+{% block body %}
+
+<h1>account index</h1>
+
+{% if user.is_authenticated %}
+{% else %}
+    <p>회원이신가요?</p>
+    <p>로그인</p>
+{% endif %}
+    <p>아직 회원이 아니신가요?</p>
+    
+
+
+{% endblock  %}
