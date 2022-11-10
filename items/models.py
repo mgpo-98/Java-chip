@@ -10,7 +10,7 @@ class Item(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField()
     price = models.IntegerField()
-    created_at = models.DatetimeField(Auto_now_add=True)
+    created_at = models.DatetimeField(auto_now_add=True)
     image = models.ProcessedImageField(
         upload_to="items/images/",
         blank=True,
