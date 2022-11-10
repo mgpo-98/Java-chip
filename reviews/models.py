@@ -17,7 +17,7 @@ class Review(models.Model):
     item_id = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    image = models.ProcessedImageField(
+    image = ProcessedImageField(
         upload_to="reviews/images/",
         blank=True,
         processors=[ResizeToFill(1200, 960)],
