@@ -17,7 +17,9 @@ class Review(models.Model):
     item_id = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
     order_at = models.DateField('구매일', null=True)
+
     image = ProcessedImageField(
         upload_to="reviews/images/",
         blank=True,

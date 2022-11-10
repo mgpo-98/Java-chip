@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "items",
     "django_bootstrap5",
     "django_extensions",
     "imagekit",
@@ -58,6 +59,7 @@ ROOT_URLCONF = "pjt.urls"
 
 TEMPLATES = [
     {
+
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [BASE_DIR / "pjt" / "templates"],
         "APP_DIRS": True,
