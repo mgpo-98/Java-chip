@@ -27,6 +27,13 @@
     {% block script %}{% endblock script %}
 </head>
 
+<!-- nav-bar dropdown -->
+
+
+
+
+
+
 <!-- nav-bar -->
 
 <body>
@@ -40,16 +47,15 @@
             <div class="collapse navbar-collapse  justify-content-between " id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <div class="navbar-nav fw-bold">
-                        <a class="nav-link" aria-current="page" href="">커피구독</a>
+                        <a class="nav-link" aria-current="page" href="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;커피구독</a>
                     </div>
                     <div class="navbar-nav fw-bold">
-                        <a class="nav-link" aria-current="page" href="">SHOP</a>
+                        <a class="nav-link" aria-current="page" href="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SHOP</a>
                     </div>
                     <div class="navbar-nav fw-bold">
-                        <a class="nav-link" aria-current="page" href="">ABOUT</a>
+                        <a class="nav-link" aria-current="page" href="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABOUT</a>
                     </div>
                     <div class="navbar-nav">
-                        
                     </div>
                 </div>
                 <div class="navbar-nav">
@@ -64,20 +70,19 @@
                     </div>
                     {% else %}
                     <div class="navbar-nav fw-bold">
-                        <a class="nav-link" aria-current="page" href="">로그인</a>
+                        <a class="nav-link" aria-current="page" href="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;로그인</a>
                     </div>
                     <div class="navbar-nav fw-bold">
-                        <a class="nav-link" aria-current="page" href="">회원가입</a><br>
+                        <a class="nav-link" aria-current="page" href="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;회원가입</a><br>
                     </div>
                     <div class="navbar-nav fw-bold">
                         <a class="nav-link" aria-current="page" href="">                   
-                            <img src="https://cdn-icons-gif.flaticon.com/6416/6416376.gif" alt="" width="30px"></a>
+                            &nbsp;&nbsp;&nbsp;<img src="https://cdn-icons-gif.flaticon.com/6416/6416388.gif" alt="" width="30px"></a>
                     </div>
                     {% endif %}
                 </div>
             </div>
         </div>
-
     </nav>
 
     <script>
@@ -116,8 +121,50 @@
 
     <!-- footer -->
 
-    {% bootstrap_javascript %}
-    <footer class="fixed-bottom text-center bg-white">© 2022 Java chip, PJT by 19팀</footer>
-</body>
+    <footer class="bg-dark text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+          <!-- Section: Social media -->
+          <section class="mb-4">
+            <!-- Facebook -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+      
+            <!-- Twitter -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-twitter"></i
+            ></a>
+      
+            <!-- Google -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-google"></i
+            ></a>
+      
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-instagram"></i
+            ></a>
+      
+            <!-- Linkedin -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+      
+            <!-- Github -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-github"></i
+            ></a>
+          </section>
+          <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            COPYRIGHT(C) Java chip. ALL RIGHTS RESERVED. HOSTING BY 19팀(주). DESIGN BY 19팀
+        </div>
+        <!-- Copyright -->
+      </footer>
 
 </html>
