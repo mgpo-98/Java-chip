@@ -19,4 +19,3 @@ class Item(models.Model):
         options={"quality": 95},
     )
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    want = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="wanted_item")
