@@ -1,9 +1,11 @@
 from .models import User, Profile
 from django.shortcuts import render, redirect
 from accounts.forms import SignupForm, UpdateForm
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm 
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
+
 
 
 # Create your views here.
@@ -57,3 +59,51 @@ def update(request):
         "form": form,
     }
     return render(request, "accounts/update.html", context)
+
+
+@login_required
+def password(request):
+    if request.method == "POST":
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return redirect("accounts:update")
+    else:
+        form = PasswordChangeForm(request.user)
+    context = {
+        "form": form,
+    }
+    return render(request, "accounts/password.html", context)
+
+@login_required
+def delete(request):
+    request.user.delete()
+    auth_logout(request)
+    return redirect("reviews:index")
+
+def mypage(request, pk):
+    user = get_user_model().objects.get(pk=pk)
+    context = {
+        "user": user,
+    }
+    return render(request, "accounts/mypage.html", context)
+
+def profile(request, pk):
+    user = get_user_model().objects.get(pk=pk)
+    context = {
+        "user": user,
+    }
+    return render(request, "accounts/profile.html", context)
+
+@login_required
+def follow(request, pk):
+    user = get_user_model().objects.get(pk=pk)
+    if request.user == user:
+        return redirect('accounts:mypage',pk)
+
+    if request.user in user.followers.all():
+        user.followers.remove(request.user)
+    else:
+        user.followers.add(request.user)
+    return redirect('accounts:mypage',pk)
