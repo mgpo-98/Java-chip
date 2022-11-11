@@ -1,0 +1,140 @@
+{% load django_bootstrap5 %}
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> 디테일 페이지 (리뷰상세 보기 페이지)</h1>
+<div>
+    <!-- 아이템 이름 -->
+    <div class='container'>
+        <h3>아이템 이름</h3><a href="{ url 'items:item' review.item_id }">{{ review.item_title }}</a>
+
+        <!-- 사용자 이름 프로필 구현  -->
+        <div class="header d-flex">
+            <!-- 프로필 -->
+            <span class="username">
+                <!-- 회원 정보 페이지로 넘어가기 -->
+                <a class='text-decoration-none fw-bolder' style='color:black'
+                    href="{% url 'accounts:detail' review.user.pk %}">
+                    <!-- 만악 회원 프로필 사진이 있으면 -->
+                    {% if user.profile_set.all.count > 0 %}
+                    <img src="{{ review.user.profile_set.all.0.image.url }}"
+                        style='width:25px; height:25px; border-radius:50%'>
+                    {% comment %} 회원가입 후 프로필 페이지에서 별도로 프로필 사진 수정을 하지 않은 경우 {% endcomment %}
+                    {% else %}
+                    <!-- 회원 프로필이 없으면 기본 프로필   -->
+                    <img src="https://image.idus.com/image/files/449a7e7a064c41baada8d3294f99d2af_720.jpg"
+                        style='width:25px; height:25px; border-radius:50%'>
+                    {% endif %}
+                    &nbsp;&nbsp;{{ review.user.username }}
+                </a>
+            </span>
+            <!-- 팔로우 기능 -->
+            {% if request.user.is_authenticated %}
+            {% comment %} 팔로우 버튼 {% endcomment %}
+            {% if request.user != review.user %}
+            <div style='margin-left:auto; margin-right:1rem'>
+                {% comment %} 리뷰를 작성한 user의 pk값이 필요하므로 data-user-id를 다음과 같이 설정해야 함! {% endcomment %}
+                <form id='follow-form' data-user-id='{{ review.user.pk }}'>
+                    {% csrf_token %}
+                    {% if request.user in review.user.followers.all %}
+                    <input id='follow-btn' type="submit" class="btn btn-warning btn-rounded follow-btn fw-bolder"
+                        style='border-radius:20px; margin-left:auto' value='언팔로우'>
+                    {% else %}
+                    <input id='follow-btn' type="submit" class="btn btn-warning btn-rounded follow-btn fw-bolder"
+                        style='border-radius:20px; margin-left:auto' value='팔로우'>
+                    {% endif %}
+                </form>
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+        <!-- 제품 구매한 날 -->
+        <p> {{ review.order_at.isoformat }}</p>
+        <!-- 리뷰 이미지 있으면 -->
+        {% if review.image %}
+        <div style='text-align:center'>
+            <img src='{{ review.image.url }}' alt='{{ review.image }}' width="400" height="300"
+                style='border-radius:4px;'>
+        </div>
+        {% endif %}
+        <!-- 리뷰 내용 -->
+        <p class="me-3-5 mt-3 text-break">{{ review.content }}</p>
+
+
+
+
+        <!--리뷰 수정  -->
+        {% if request.user == review.user %}
+        <div class='mt-2 d-flex'>
+            {% comment %} 요청한 user가 리뷰를 작성한 user일 경우에 수정 및 삭제{% endcomment %}
+            <p>
+                <button type="button" class="btn btn-warning me-2">
+                    <a href="{% url 'reviews:update' review.pk %}" style='text-decoration:none; color:white'
+                        class='fw-bolder'>수정하기</a>
+                </button>
+            </p>
+            <p>
+            <form action="{% url 'reviews:delete' review.pk %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-danger fw-bolder" value="삭제하기">
+            </form>
+            </p>
+        </div>
+        {% endif %}
+        <!-- 댓글 -->
+        <h4>댓글</h4>
+        {% if request.user.is_authenticated %}
+        <form action="{% url 'reviews:comment_create' review.pk %}" method="POST">
+            {% csrf_token %}
+            {% bootstrap_form comment_form layout='inline'%}
+            {% bootstrap_button style='float:right; color:white' button_type="submit" button_class="btn btn-warning
+            fw-bolder mt-1" content="OK" %}
+        </form>
+        {% endif %}
+        <!-- 댓글 순서대로 출력 -->
+        {% for comment in comments %}
+        <div class='py-3'>
+            <div class="align-items-center">
+                <a class="text-decoration-none fw-bolder" style='color:gray'
+                    href="{% url 'accounts:detail' comment.user.pk %}">{{ comment.user.username }}</a>&nbsp;&nbsp;
+                <span class="text-break">{{ comment.content }}</span>
+            </div>
+
+            {% comment %} 댓글을 작성한 user가 리뷰를 쓴 유저인 경우 {% endcomment %}
+            {% if user.is_authenticated and comment.user == request.user %}
+            <form action="{% url 'reviews:comment_delete' review.pk comment.pk %}" method="POST" class="my-0">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-outline-danger mt-2" value="삭제">
+            </form>
+            {% endif %}
+            {% empty %}
+            <br>
+        </div>
+        {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+</div>
+
+{% block js %}
+{% comment %} 리뷰 좋아요 비동기 자바스크립트 {% endcomment %}
+<script src="{% static 'reviews/review_like.js' %}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+{% endblock js %}
+
+
+{% endblock content %}
