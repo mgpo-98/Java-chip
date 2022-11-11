@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+{% block body %}
+
+<h1>follow</h1>
+
+{% if request.user != user %}
+    {% comment %} 스스로는 팔로우 불가 {% endcomment %}
+    <a href="{% url 'accounts:follow' user.pk %}" class="btn btn-primary float-end">
+        {% if request.user in user.followers.all %}
+        팔로우 취소
+        {% else %}
+        팔로우
+        {% endif %}
+
+    </a>
+    {% endif %}
+    <p> 
+        팔로우
+        {{ user.followings.count }}
+        | 팔로워
+        {{ user.followers.count }}
+     </p>
+    
+
+
+{% endblock  %}
