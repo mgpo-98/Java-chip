@@ -5,9 +5,6 @@ from bs4 import BeautifulSoup
 # 상품정보를 크롤링해서 model에 저장. 상품 정보를 모두 보여준다.
 
 
-titles = []
-image_urls = []
-
 # 목록페이지 정보 크롤링
 def get_items_info(page, item_nums):
     items_title_ls = []
@@ -52,3 +49,7 @@ def get_items_info(page, item_nums):
 
 def index(request):
     return render(request, "items/index.html")
+
+
+def detail(request, item_pk):
+    return render(request, "items/detail.html")
