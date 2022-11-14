@@ -20,7 +20,6 @@ class ReviewForm(forms.ModelForm):
     )
     
 
-
     class Meta:
         model = Review
         fields = ['title','image', 'content', 'order_at']

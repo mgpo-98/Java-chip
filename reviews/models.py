@@ -14,10 +14,9 @@ class Review(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField()
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    item_id = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    
     order_at = models.DateField('구매일', null=True)
 
     image = ProcessedImageField(
