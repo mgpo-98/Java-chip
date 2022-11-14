@@ -37,11 +37,3 @@ class AboutThisCoffee(models.Model):
 class ItemDetail(models.Model):
     fact_sheet = models.ForeignKey(FactSheet, on_delete=models.CASCADE)
     about_this_coffee = models.ForeignKey(AboutThisCoffee, on_delete=models.CASCADE)
-    subscribe = models.TextField()
-    image = ProcessedImageField(
-        upload_to="items/images/",
-        blank=True,
-        processors=[ResizeToFill(1200, 960)],
-        format="JPEG",
-        options={"quality": 95},
-    )

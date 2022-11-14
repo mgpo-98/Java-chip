@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+{% block body %}
+
+<h1>my page</h1>
+
+<h2>{{ user }}님 안녕하세요!</h2>
+    <div class="me-3" href="{% url 'accounts:profile' user.pk %}" style="cursor: pointer;">
+        <img>
+
+
+    </div>
+
+    <div>
+        <a class="btn btn-primary" href="{% url 'accounts:profile' user.pk %}"> {{ user }}</a>
+        {% if request.user.is_authenticated %}
+        {% if request.user != user %}
+            {% if request.user in user.followers.all %}
+            <span id="follow" data-user-id="{{ user.pk }}" class="btn btn-light">팔로잉</span>
+            {% else %}
+            <span id="follow" data-user-id="{{ user.pk }}" class="btn btn-dark">팔로우</span>
+            {% endif %}
+        {% endif %}
+        {% endif %}
+    </div>
+        {% if request.user == user %}
+    <div>
+        <a href="{% url 'accounts:update' %}" class="btn"> 정보수정 </a>
+    </div>
+    {% endif %}
+
+{% endblock %}
