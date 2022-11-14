@@ -25,37 +25,15 @@ class Item(models.Model):
 
 
 class FactSheet(models.Model):
-    producer = models.TextField()
-    farms = models.TextField()
-    region = models.TextField()
-    kind = models.TextField()
-    processed = models.TextField()
-    roasting = models.TextField()
+    fieldname = models.TextField()
+    content = models.TextField()
 
 
 class AboutThisCoffee(models.Model):
-    title1 = models.TextField()
-    content1 = models.TextField()
-    title2 = models.TextField()
-    content2 = models.TextField()
-
-
-class Recipe(models.Model):
     title = models.TextField()
-    ingredient = models.TextField()
-    order = models.TextField()
-    grinder = models.TextField()
+    content = models.TextField()
+
 
 class ItemDetail(models.Model):
     fact_sheet = models.ForeignKey(FactSheet, on_delete=models.CASCADE)
     about_this_coffee = models.ForeignKey(AboutThisCoffee, on_delete=models.CASCADE)
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-    story = models.TextField()
-    subscribe = models.TextField()
-    image = ProcessedImageField(
-        upload_to="items/images/",
-        blank=True,
-        processors=[ResizeToFill(1200, 960)],
-        format="JPEG",
-        options={"quality": 95},
-    )
