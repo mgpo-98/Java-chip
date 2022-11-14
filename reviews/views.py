@@ -22,19 +22,19 @@ def index(request):
 @login_required # 로그인 한경우만 리뷰 작성 가능
 def create(request):
     if request.method == 'POST':
-        review_form = ReviewForm(request.POST, request.FILES)
+        review_form = ReviewForm(request.POST,  request.FILES)
         if review_form.is_valid():
             review = review_form.save(commit=False)
-            review.user = request.user 
+            review.user = request.user
+  
             review.save()
-            return redirect('/')
+            return redirect('reviews:index')
     else:
         review_form = ReviewForm()
     context = {
         'review_form' : review_form,
     }
-    return render(request,'reviews/form.html', context=context)
-
+    return render(request,'reviews/form.html',  context=context)
 
 # 리뷰 삭제
 @login_required
@@ -81,7 +81,7 @@ def update(request, pk):
             review_form = ReviewForm(instance=review)
         context = {
             "review_form": review_form,
-            'shop_name': review.shop_name
+           
         }
         return render(request, "reviews/form.html", context)
     else:
