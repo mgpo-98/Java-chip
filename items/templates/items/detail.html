@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% block body %}
+<header class="d-flex justify-content-between align-items-center" style="height:800px">
+    <div style="width:470px">
+        <h1 class="fw-bold mb-5">상품명</h1>
+        <label class='form-label' for="">용량</label>
+        <select class='form-select mb-3' name="" id="">
+            <option selected>= 용량 선택 =</option>
+            <option value="">200</option>
+        </select>
+        <label class='form-label' for="">분쇄도</label>
+        <select class='form-select mb-5' name="" id="">
+            <option selected>= 분쇄도 선택 : 가격 =</option>
+            <option value="">홀빈(같지않음)</option>
+            <option value="">핸드드립/커피메이커</option>
+            <option value="">프렌치프레스</option>
+            <option value="">모카포트</option>
+            <option value="">에어로프레스</option>
+            <option value="">에스프레소머신</option>
+            <option value="">콜드브루/더치</option>
+        </select>
+        <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-dark rounded-0" style="padding:10px 85px 10px 85px">구매하기</button>
+            <button type="button" class="btn btn-outline-dark rounded-0" style="padding:10px 85px 10px 85px">장바구니</button>
+        </div>
+        <!-- 네이버페이 -->
+        <div class="d-flex justify-content-end mt-2">
+            <button type="button" id="naverPayBtn" value="네이버페이 결제 버튼" style="padding:5px 20px 5px 20px">네이버페이</button>
+            <script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>
+            <script>
+                var oPay = Naver.Pay.create({
+                    "mode" : "production", // development or production
+                    "clientId": "u86j4ripEt8LRfPGzQ8" // clientId
+                });
+
+                //직접 만드신 네이버페이 결제버튼에 click Event를 할당하세요
+                var elNaverPayBtn = document.getElementById("naverPayBtn");
+
+                elNaverPayBtn.addEventListener("click", function() {
+                    oPay.open({
+                    "merchantUserKey": "가맹점 사용자 식별키",
+                    "merchantPayKey": "가맹점 주문 번호",
+                    "productName": "상품명을 입력하세요",
+                    "totalPayAmount": "1000",
+                    "taxScopeAmount": "1000",
+                    "taxExScopeAmount": "0",
+                    "returnUrl": "사용자 결제 완료 후 결제 결과를 받을 URL"
+                    });
+                });
+            </script>
+        </div>
+    </div>
+    <!-- header 우측 -->
+    <div>
+        <img src="https://dummyimage.com/800x800/7a7a7a/ff" alt="상품이미지">
+    </div>
+</header>
+<!-- header, main 사이 : fact_sheet, about_this_coffee -->
+<div class="row bg-white py-5" style="height:380px">
+    <div class="col-4 ps-5" >
+        <p class="fw-semibold">FACT SHEET</p>
+        <div class="mt-5">
+            <div>
+                <p>생산자</p>
+                <p>농장</p>
+                <p>지역</p>
+                <p>품종</p>
+                <p>가공</p>
+                <p>로스팅</p>
+            </div>
+            <div class="ms-3">
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-8 ps-5 border-start">
+        <p class="fw-semibold">ABOUT THIS COFFEE</p>
+        <div>
+            <div class="mt-5">
+                <p>title </p>
+                <p>content </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main>
+    <div class="d-flex bg-light align-items-center mt-5" >
+        <img src="https://dummyimage.com/800x1200/8a8a8a/fff" alt="image">
+        <div class="ms-5">
+            <h5>title </h5>
+            <p>content </p>
+        </div>
+    </div>
+    <div class="d-flex bg-light align-items-center mt-5" >
+        <img src="https://dummyimage.com/800x1200/8a8a8a/fff" alt="image">
+        <div class="ms-5">
+            <h5>title </h5>
+            <p>content </p>
+        </div>
+    </div>
+    <div class="d-flex bg-light align-items-center mt-5" >
+        <img src="https://dummyimage.com/800x1200/8a8a8a/fff" alt="image">
+        <div class="ms-5">
+            <h5>title </h5>
+            <p>content </p>
+        </div>
+    </div>
+    <div class="p-5 m-5">
+        <div class="my-5" style="height:400px">
+            <h1 class="mb-3">SHIPPING & DELIVERY</h1>
+            <div class="mt-5">
+                <div class="p-4 bg-light fw-bold">배송안내</div>
+                <div class="p-4 bg-light fw-bold">교환/환불 안내</div>
+                <div class="p-4 bg-light fw-bold">카카오톡 문의</div>
+            </div>
+        </div>
+        <div class="my-5">
+            <h1>REVIEW</h1>
+            <div class="bg-light d-flex align-items-center justify-content-center" style="width:1100px;height:300px">review html</div>
+        </div>
+    </div>
+    <div class="mt-5 p-5 bg-light">
+        <h1 class="pt-5">RECOMMEND</h1>
+        <div class="my-5 p-5 d-flex justify-content-center bg-secondary" style="width:1100 px;height:700px;">
+            <img src="" alt="">
+            <img src="" alt="">
+            <img src="" alt="">
+        </div>
+    </div>
+</main>
+<footer class='d-flex align-items-center' style="background-image: url('https://dummyimage.com/1296x700/ffffff/f2f2f2'); height: 700px;">
+    <div>
+        <h1>SUBSCRITIONS</h1>
+        <p>빈 브라더스 커피 구독 서비스</p>
+        <p>무궁무진한 커피 세계를 탐험하세요.<br>
+            매월 새로운 추천 커피를 할인된 가격에 무료배송으로<br>
+            모자르거나 남는 걱정없이 스케줄을 조정하고 정지할 수 있어요.
+        </p>
+
+        <button type="button" class="btn bg-white">구독하기</button>
+        <button type="button" class="btn btn-border-white text">샘플러신청</button>
+    </div>
+</footer>
+{% endblock %}
