@@ -18,14 +18,12 @@ class Review(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     order_at = models.DateField('구매일', null=True)
-
-    image = ProcessedImageField(
-        upload_to="reviews/images/",
-        blank=True,
-        processors=[ResizeToFill(1200, 960)],
-        format="JPEG",
-        options={"quality": 95},
-    )
+    
+    image = ProcessedImageField(upload_to='images/', blank=True,
+                            processors=[ResizeToFill(1200, 960)],
+                            format='JPEG',
+                            options={'quality': 80})
+       
     like_users = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name="like_reviews"
     )
