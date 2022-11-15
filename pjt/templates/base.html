@@ -31,33 +31,28 @@
 
 
 
-
-
-
 <!-- nav-bar -->
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-white bg-white py-3 sticky-top opacity-100"
-        style="box-shadow: 1px 1px 0 0px #dddddd;">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse  justify-content-between " id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <div class="navbar-nav fw-bold">
-                        <a class="nav-link" aria-current="page" href="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;커피구독</a>
-                    </div>
-                    <div class="navbar-nav fw-bold">
-                        <a class="nav-link" aria-current="page" href="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SHOP</a>
-                    </div>
-                    <div class="navbar-nav fw-bold">
-                        <a class="nav-link" aria-current="page" href="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABOUT</a>
-                    </div>
-                    <div class="navbar-nav">
-                    </div>
+    <nav>
+      <div class="wrapper">
+        <div class="logo"><a href="#">Java chip</a></div>
+        <input type="radio" name="slider" id="menu-btn">
+        <input type="radio" name="slider" id="close-btn">
+        <ul class="nav-links">
+          <li>
+            <a href="#" class="desktop-item"><b>커피구독</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#" class="desktop-item"><b>SHOP</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#" class="desktop-item"><b>ABOUT</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="mega-box">
+              <div class="content">
+                <div class="row">
+                  <ul class="mega-links">
+                    <li><a href="#">샘플러신청</a></li>
+                    <li><a href="#">구독신청</a></li>
+                  </ul>
                 </div>
+
                 <div class="navbar-nav">
                     {% if request.user.is_authenticated %}
                     <div class="navbar-nav fw-bold">
@@ -80,10 +75,45 @@
                             &nbsp;&nbsp;&nbsp;<img src="https://cdn-icons-gif.flaticon.com/6416/6416388.gif" alt="" width="30px"></a>
                     </div>
                     {% endif %}
+
+                <div class="row">
+                  <ul class="mega-links">
+                    <li><a href="#">NEW</a></li>
+                    <li><a href="#">원두</a></li>
+                    <li><a href="#">드립백</a></li>
+                    <li><a href="#">콜드브루</a></li>
+                    <li><a href="#">캡슐커피</a></li>
+                    <li><a href="#">선물세트</a></li>
+                    <li><a href="#">커피용품</a></li>
+                    <li><a href="#">클래스/워크샵</a></li>
+                  </ul>
                 </div>
+                <div class="row">
+                  <ul class="mega-links">
+                    <li><a href="#">브랜드</a></li>
+                    <li><a href="#">매장안내</a></li>
+                    <li><a href="#">납품 및 컨설팅</a></li>
+                    <li><a href="#">오피스 커피구독</a></li>
+                    <li><a href="#">커피위키</a></li>
+                    <li><a href="#">아카이브</a></li>
+                  </ul>
+                </div>
+              </div>
             </div>
-        </div>
+            <li><a href="#"><b>로그인</b></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <li><a href="#"><b>회원가입</b></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <li><img src="https://cdn-icons-gif.flaticon.com/6416/6416388.gif" alt="" width="30px" href=""><b></b></img></li>
+          </li>
+        </ul>
+        <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+      </div>
     </nav>
+  </body>
+
+
+<!-- nav-bar -->
+
+
 
     <script>
         var div2 = document.getElementsByClassName("search-txt");
@@ -166,5 +196,5 @@
         </div>
         <!-- Copyright -->
       </footer>
-
+      {% bootstrap_javascript %}
 </html>

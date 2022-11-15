@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block body %}
-<header class="d-flex justify-content-between align-items-center" style="height:800px">
+<header class="d-flex justify-content-between align-items-center" style="height:800px; margin: 0px 300px 0px 300px">
     <div style="width:470px">
         <h1 class="fw-bold mb-5">상품명</h1>
         <label class='form-label' for="">용량</label>
@@ -56,17 +57,17 @@
     </div>
 </header>
 <!-- header, main 사이 : fact_sheet, about_this_coffee -->
-<div class="row bg-white py-5" style="height:380px">
+<div class="row bg-white py-5" style="height:380px; margin: 0px 300px 0px 300px;">
     <div class="col-4 ps-5" >
         <p class="fw-semibold">FACT SHEET</p>
         <div class="mt-5">
-            <div>
-                <p>생산자</p>
-                <p>농장</p>
-                <p>지역</p>
-                <p>품종</p>
-                <p>가공</p>
-                <p>로스팅</p>
+            <div class="d-flex flex-column">
+                <span>생산자</span>
+                <span class="mt-2">농장</span>
+                <span class="mt-2">지역</span>
+                <span class="mt-2">품종</span>
+                <span class="mt-2">가공</span>
+                <span class="mt-2">로스팅</span>
             </div>
             <div class="ms-3">
                 <p></p>
@@ -89,7 +90,7 @@
     </div>
 </div>
 
-<main>
+<main style='margin: 0px 300px 0px 300px;'>
     <div class="d-flex bg-light align-items-center mt-5" >
         <img src="https://dummyimage.com/800x1200/8a8a8a/fff" alt="image">
         <div class="ms-5">
@@ -134,7 +135,7 @@
         </div>
     </div>
 </main>
-<footer class='d-flex align-items-center' style="background-image: url('https://dummyimage.com/1296x700/ffffff/f2f2f2'); height: 700px;">
+<footer id='detail-footer' class='d-flex align-items-center'>
     <div>
         <h1>SUBSCRITIONS</h1>
         <p>빈 브라더스 커피 구독 서비스</p>

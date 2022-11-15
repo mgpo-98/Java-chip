@@ -13,11 +13,11 @@
     <p class="ms-5">클래스/워크샵</p>
 </div>
 <!-- 상품 목록 -->
-<div class="row row-cols-1 row-cols-md-3 g-4 my-5">
+<div class="row row-cols-1 row-cols-md-3 g-4 my-5" style="margin: 0px 300px 0px 300px">
     <a href="{% url 'items:detail' 1 %}">
     <div class="col">   
         <div class="card border border-0 p-3">
-            <img src="https://dummyimage.com/424x424/7a7a7a/fff" alt="상품이미지예정">
+            <img src="{{image_url}}" alt="상품이미지예정">
             <div class="card-body">
                 <h5 class="card-title fw-semibold text-center">상품명</h5>
                 <div class="card-text text-center">상품영문명칭</div>
