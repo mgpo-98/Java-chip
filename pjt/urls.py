@@ -28,4 +28,4 @@ urlpatterns = [
     path("accounts/", include("accounts.urls")),
     path("items/", include("items.urls")),
 
-]+ static(settings.MEDIA_URL, document_index=settings.MEDIA_ROOT)
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

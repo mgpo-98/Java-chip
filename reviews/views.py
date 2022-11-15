@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Review, Comment
 from reviews.forms import ReviewForm, CommentForm
+
 # Create your views here.
 @login_required
 def index(request):
@@ -23,16 +24,18 @@ def index(request):
 def create(request):
     if request.method == 'POST':
         review_form = ReviewForm(request.POST,  request.FILES)
+   
         if review_form.is_valid():
             review = review_form.save(commit=False)
             review.user = request.user
-  
+
             review.save()
             return redirect('reviews:index')
     else:
         review_form = ReviewForm()
     context = {
         'review_form' : review_form,
+        
     }
     return render(request,'reviews/form.html',  context=context)
 
@@ -52,6 +55,7 @@ def delete(request, pk):
 
 def detail(request, pk):
     review = get_object_or_404(Review, pk=pk)
+
     comment_form = CommentForm()
     # template에 객체 전달
     context = {
@@ -93,7 +97,7 @@ def update(request, pk):
 
 
 # 좋아요
-@login_required
+@require_POST
 def like(request, pk):
     review = get_object_or_404(Review, pk=pk)
     # print('hi') 요청 확인 위함
@@ -108,6 +112,8 @@ def like(request, pk):
         # 상세 페이지로 redirect
     context = {"isLiked": is_liked, "likeCount": review.like_users.count()}
     return JsonResponse(context)
+
+
 
 # 댓글 작성하기
 @login_required
