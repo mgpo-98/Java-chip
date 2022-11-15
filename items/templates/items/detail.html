@@ -3,7 +3,7 @@
 {% block body %}
 <header class="d-flex justify-content-between align-items-center" style="height:800px; margin: 0px 300px 0px 300px">
     <div style="width:470px">
-        <h1 class="fw-bold mb-5">상품명</h1>
+        <h1 class="fw-bold mb-5">{{detail1.header_title}}</h1>
         <label class='form-label' for="">용량</label>
         <select class='form-select mb-3' name="" id="">
             <option selected>= 용량 선택 =</option>
@@ -22,7 +22,7 @@
         </select>
         <div class="d-flex justify-content-between">
             <button type="button" class="btn btn-dark rounded-0" style="padding:10px 85px 10px 85px">구매하기</button>
-            <button type="button" class="btn btn-outline-dark rounded-0" style="padding:10px 85px 10px 85px">장바구니</button>
+            <button type="button" class="btn btn-outline-dark rounded-0" style="padding:10px 85px 10px 85px">찜하기</button>
         </div>
         <!-- 네이버페이 -->
         <div class="d-flex justify-content-end mt-2">
@@ -53,7 +53,7 @@
     </div>
     <!-- header 우측 -->
     <div>
-        <img src="https://dummyimage.com/800x800/7a7a7a/ff" alt="상품이미지">
+        <img src={{detail1.header_image}} alt="상품이미지">
     </div>
 </header>
 <!-- header, main 사이 : fact_sheet, about_this_coffee -->
@@ -135,17 +135,18 @@
         </div>
     </div>
 </main>
-<footer id='detail-footer' class='d-flex align-items-center'>
-    <div>
-        <h1>SUBSCRITIONS</h1>
-        <p>빈 브라더스 커피 구독 서비스</p>
-        <p>무궁무진한 커피 세계를 탐험하세요.<br>
+<footer id='detail-footer' class='d-flex align-items-center bg-light text-white'>
+    <div style="margin-left: 200px;">
+        <h1 class="fw-bold">SUBSCRITIONS</h1>
+        <h4 class="fw-bold my-3">빈 브라더스 커피 구독 서비스</h4>
+        <p style="line-height:25px">무궁무진한 커피 세계를 탐험하세요.<br>
             매월 새로운 추천 커피를 할인된 가격에 무료배송으로<br>
             모자르거나 남는 걱정없이 스케줄을 조정하고 정지할 수 있어요.
         </p>
-
-        <button type="button" class="btn bg-white">구독하기</button>
-        <button type="button" class="btn btn-border-white text">샘플러신청</button>
+        <div class="d-flex mt-5">
+            <button type="button" class="btn rounded-0 bg-white fw-bold" style="padding:10px 50px 10px 50px">구독하기</button>
+            <button type="button" class="btn rounded-0 text-white border-white ms-2 fw-bold" style="padding:10px 50px 10px 50px">샘플러신청</button>
+        </div>
     </div>
 </footer>
 {% endblock %}
