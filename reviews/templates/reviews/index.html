@@ -1,8 +1,106 @@
+{% extends 'base.html' %}
 {% load django_bootstrap5 %}
-
-{% block content %}
+{% block body %}
 
 <h1> 인덱스 페이지 </h1>
 
+{% comment %} 유저들의 리얼리뷰 {% endcomment %}
+<div class="m-4 py-4 px-2" style="min-width:1250px;  ">
+    <h2 class="text-center">
+        <i class="bi bi-clipboard-check"></i>
+      리뷰 목록
+    </h2>
+    {% comment %} 페이지네이션 {% endcomment %}
+    <ul class="pagination justify-content-end">
+      {% comment %} 이전 페이지 {% endcomment %}
+      {% if posts.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ posts.previous_page_number }}" aria-label="Previous"
+          style="border-color: chocolate; background-color: none; color: chocolate;">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" tabindex="-1" aria-disabled="true" href="#"
+          style="border-color: chocolate; background-color: none; color: chocolate;">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      {% endif %}
+      {% comment %} 페이지리스트 {% endcomment %}
+      {% for page_number in posts.paginator.page_range %}
+      {% if page_number >= posts.number|add:-5 and page_number <= posts.number|add:5 %} 
+      {% if page_number == posts.number %}
+      <li class="page-item active" aria-current="page">
+        <a class="page-link"
+          style="font-family: 'SDSamliphopangche_Basic'; border-color: chocolate; color: white; background-color: chocolate;"
+          href="?page={{ page_number }}">{{ page_number }}</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+        <a class="page-link" href="?page={{ page_number }}" style="font-family: 'SDSamliphopangche_Basic'; border-color: chocolate; color: chocolate;">{{ page_number }}</a>
+        </li>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        {% comment %} 다음 페이지 {% endcomment %}
+        {% if posts.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ posts.next_page_number }}" aria-label="Next"
+            style="border-color: chocolate; color: chocolate;">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" tabindex="-1" aria-disabled="true" href="#"
+            style="border-color: chocolate; color: chocolate;">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+        {% endif %}
+    </ul>
 
-{% endblock %}
+
+
+    {% comment %} 리뷰 카드들 {% endcomment %}
+    <div class="row row-cols-4 g-2">
+      {% for review in reviews %}
+      <div class='col'>
+        <article class="card h-100">
+          <div class="card-header text-center" style="font-family: 'SDSamliphopangche_Basic';">
+            {{ review.user.username }}
+          </div>
+
+          {% comment %} 리뷰 이미지 {% endcomment %}
+
+          {% if review.image %}
+          <img src="{{ review.image.url }}" class="card-img-top" alt="..." style='height:278.4px; object-fit: cover;'>
+          {% else %}
+          <img src="https://dimg.donga.com/wps/NEWS/IMAGE/2021/02/08/105325025.1.jpg" class="card-img-top" alt="..." style='height:278.4px; object-fit: contain;'>
+          {% endif %}
+          <div class="card-body">
+            <h4 class="card-text" style="font-family: 'SDSamliphopangche_Basic';">
+                {% comment %} 리뷰 제목 {% endcomment %}
+            {{ review.title }}
+            </h4>
+            <hr>
+            {% comment %} 리뷰 내용 {% endcomment %}
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <p class="card-text" style="font-family: 'SDSamliphopangche_Basic';">
+                    {{ review.content|truncatechars:50 }}</p>
+                </li>
+            </ul>
+          </div>
+          <div class="card-footer text-center" style="font-family: 'SDSamliphopangche_Basic';">
+            <a href="{% url 'reviews:detail' review.pk %}" class='text-decoration-none'
+              style="font-family: 'SDSamliphopangche_Basic'; color:rgb(214, 154, 93);">상세보기</a>
+          </div>
+        </article>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+    {% endblock body %}
