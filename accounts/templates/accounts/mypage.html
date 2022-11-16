@@ -61,15 +61,12 @@
         <div class="row">
         {% for review in user.review_set.all %}
             <div class="col-6 col-sm-3">
-                <!--이미지 버그 수정 필요-->
-                {% if review.reviews_image.all|length %}
-                    {% for image in review.reviews_image.all %}
-                    {% if forloop.counter == 1 %}
-                        <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.image.url }}" alt="{{ review.image }}"></a>
-                    {% endif %}
-                    {% endfor %}
+                <!--작성된 리뷰에 이미지가 있다면 해당 이미지 파일 출력-->
+                {% if review.image %}
+                        <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.image.url }}" alt="{{ review.image }}" class="img-thumbnail" ></a>
                 {% else %}
-                <a href="{% url 'reviews:detail' review.pk %}"><img src="https://dummyimage.com/100/000/fff"></a>
+                <!-- 작성된 리뷰에 이미지가 없을 시 더미 이미지 출력-->
+                <a href="{% url 'reviews:detail' review.pk %}"><img src="https://dummyimage.com/100/000/fff" class="img-thumbnail"></a>
                 {% endif %}
                 <div class="d-flex">
                     <p> 좋아요 {{ review.like_users.count }} 개 </p>
