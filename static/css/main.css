@@ -364,19 +364,6 @@ width: 120%;
   text-transform: uppercase!important;
   letter-spacing: 2px;
   color: white
-  cursor: hand;
-  text-align: center;
-  text-transform: capitalize;
-  border: 3px solid ;
-  border-radius:50px;
-  position: relative;
-  overflow: hidden!important;
-  -webkit-transition: all .3s ease-in-out;
-  -moz-transition: all .3s ease-in-out;
-  -o-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
-  background: transparent!important;
-  z-index:10;
 }
 .btn11:hover{
   border: 3px solid white;
