@@ -23,11 +23,15 @@ class AboutThisCoffee(models.Model):
     content = models.TextField()
 
 
+class MainImageUrl(models.Model):
+    urls = models.TextField()
+
+
 class ItemDetail(models.Model):
     fact_sheet = models.ForeignKey(FactSheet, on_delete=models.CASCADE)
     about_this_coffee = models.ForeignKey(AboutThisCoffee, on_delete=models.CASCADE)
     header_title = models.TextField()
     header_image = models.TextField()
-    main_images_url = models.TextField()
+    main_images_url = models.ForeignKey(MainImageUrl, on_delete=models.CASCADE)
     main_text_title = models.TextField()
     main_text_content = models.TextField()
