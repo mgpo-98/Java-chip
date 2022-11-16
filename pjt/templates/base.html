@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'items/style.css' %}">
     <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/128/924/924514.png">
     {% bootstrap_css %}
     {% block css %}{% endblock css %}
@@ -30,9 +31,9 @@
 <!-- nav-bar -->
 
 <body>
-    <nav>
+    <nav class="sticky-top">
       <div class="wrapper">
-        <div class="logo"><a href="">Java chip</a>&nbsp;&nbsp;&nbsp;
+        <div class="logo"><a href="{% url 'index' %}">Java chip</a>&nbsp;&nbsp;&nbsp;
         <img src="https://cdn-icons-gif.flaticon.com/6172/6172525.gif" alt="" width="30px" href=""></img>
         </div>
         <input type="radio" name="slider" id="menu-btn">
@@ -74,16 +75,29 @@
                 </div>
               </div>
             </div>
-            <div><li><a href=""><b>로그인</b></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <li><a href=""><b>회원가입</b></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <li><img src="https://cdn-icons-gif.flaticon.com/6416/6416388.gif" alt="장바구니" width="30px" href=""></img></li>
+              <div class="navbar-nav">
+              {% if request.user.is_authenticated %}
+              <div class="navbar-nav fw-bold">
+                  <a class="nav-link" aria-current="page" href="{% url 'accounts:mypage' request.user.pk %}">
+                      {{ request.user }}</a>
+              </div>
+              <div class="navbar-nav fw-bold">
+                  <a class="nav-link" aria-current="page" href="{% url 'accounts:logout' %}">
+                      로그아웃</a>
+              </div>
+              {% else %}
+            <div><li><a href="{% url 'accounts:login' %}"><b>로그인</b></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <li><a href="{% url 'accounts:signup' %}"><b>회원가입</b></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <li><img src="https://cdn-icons-gif.flaticon.com/6416/6416388.gif" alt="장바구니" width="30px" href="{% url 'index' %}"></img></li>
           </li>
+          {% endif %}
         </ul>
       </div>
     </nav>
   </body>{% block body %}{% endblock body %}
     
-
+  {% bootstrap_javascript %}
+  
     <!-- footer -->
 
     <footer class="bg-dark text-center text-white">
@@ -131,5 +145,4 @@
         </div>
         <!-- Copyright -->
       </footer>
-      {% bootstrap_javascript %}
 </html>
