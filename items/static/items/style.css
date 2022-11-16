@@ -1,4 +1,26 @@
 #detail-footer {
-    background-image: url('https://dummyimage.com/1296x700/ffffff/f2f2f2');
+    background-image: url('https://cdn-pro-web-210-60-godomall.spdycdn.net/ablestory_godomall_com/data/skin/front/designwib_C/img/banner/6ced995909acee292418214e450c2e8c_54233.jpg');
     height: 700px;
+    background-size: cover;
+}
+
+#buy_button{
+    padding:10px 85px 10px 85px;
+}
+
+#buy_button a{
+    text-decoration: none;
+    color:black;
+}
+
+#pick-button{
+    padding:10px 85px 10px 85px;
+    text-decoration: none;
+    color:black;
+}
+
+#pick-button a {
+    padding:10px 85px 10px 85px;
+    text-decoration: none;
+    color:black;
 }

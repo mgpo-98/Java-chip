@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'items/style.css' %}">
     <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/128/924/924514.png">
     {% bootstrap_css %}
     {% block css %}{% endblock css %}
@@ -27,128 +28,78 @@
     {% block script %}{% endblock script %}
 </head>
 
-<!-- nav-bar dropdown -->
-
-
 
 <!-- nav-bar -->
 
 <body>
-    <nav>
+    <nav class="sticky-top">
       <div class="wrapper">
-        <div class="logo"><a href="#">Java chip</a></div>
+        <div class="logo"><a href="{% url 'index' %}">Java chip</a>&nbsp;&nbsp;&nbsp;
+        <img src="https://cdn-icons-gif.flaticon.com/6172/6172525.gif" alt="" width="30px" href=""></img>
+        </div>
         <input type="radio" name="slider" id="menu-btn">
         <input type="radio" name="slider" id="close-btn">
         <ul class="nav-links">
-          <li>
-            <a href="#" class="desktop-item"><b>커피구독</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="#" class="desktop-item"><b>SHOP</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="#" class="desktop-item"><b>ABOUT</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <li><div>
+            <a href="" class="desktop-item"><b>커피구독</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="" class="desktop-item"><b>SHOP</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="" class="desktop-item"><b>ABOUT</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
             <div class="mega-box">
               <div class="content">
                 <div class="row">
                   <ul class="mega-links">
-                    <li><a href="#">샘플러신청</a></li>
-                    <li><a href="#">구독신청</a></li>
-                  </ul>
-                </div>
-
-                <div class="navbar-nav">
-                    {% if request.user.is_authenticated %}
-                    <div class="navbar-nav fw-bold">
-                        <a class="nav-link" aria-current="page" href="{% url 'accounts:mypage' request.user.pk %}">
-                            {{ request.user }}</a>
-                    </div>
-                    <div class="navbar-nav fw-bold">
-                        <a class="nav-link" aria-current="page" href="{% url 'accounts:logout' %}">
-                            로그아웃</a>
-                    </div>
-                    {% else %}
-                    <div class="navbar-nav fw-bold">
-                        <a class="nav-link" aria-current="page" href="{% url 'accounts:login' %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;로그인</a>
-                    </div>
-                    <div class="navbar-nav fw-bold">
-                        <a class="nav-link" aria-current="page" href="{% url 'accounts:signup' %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;회원가입</a><br>
-                    </div>
-                    <div class="navbar-nav fw-bold">
-                        <a class="nav-link" aria-current="page" href="">                   
-                            &nbsp;&nbsp;&nbsp;<img src="https://cdn-icons-gif.flaticon.com/6416/6416388.gif" alt="" width="30px"></a>
-                    </div>
-                    {% endif %}
-
-                <div class="row">
-                  <ul class="mega-links">
-                    <li><a href="#">NEW</a></li>
-                    <li><a href="#">원두</a></li>
-                    <li><a href="#">드립백</a></li>
-                    <li><a href="#">콜드브루</a></li>
-                    <li><a href="#">캡슐커피</a></li>
-                    <li><a href="#">선물세트</a></li>
-                    <li><a href="#">커피용품</a></li>
-                    <li><a href="#">클래스/워크샵</a></li>
+                    <li><a href=""><b>샘플러신청</b></a></li>
+                    <li><a href=""><b>구독신청</b></a></li>
                   </ul>
                 </div>
                 <div class="row">
                   <ul class="mega-links">
-                    <li><a href="#">브랜드</a></li>
-                    <li><a href="#">매장안내</a></li>
-                    <li><a href="#">납품 및 컨설팅</a></li>
-                    <li><a href="#">오피스 커피구독</a></li>
-                    <li><a href="#">커피위키</a></li>
-                    <li><a href="#">아카이브</a></li>
+                    <li><a href=""><b>NEW</b></a></li>
+                    <li><a href=""><b>원두</b></a></li>
+                    <li><a href=""><b>드립백</b></a></li>
+                    <li><a href=""><b>콜드브루</b></a></li>
+                    <li><a href=""><b>캡슐커피</b></a></li>
+                    <li><a href=""><b>선물세트</b></a></li>
+                    <li><a href=""><b>커피용품</b></a></li>
+                    <li><a href=""><b>클래스/워크샵</b></a></li>
+                  </ul>
+                </div>
+                <div class="row">
+                  <ul class="mega-links">
+                    <li><a href=""><b>브랜드</b></a></li>
+                    <li><a href=""><b>매장안내</b></a></li>
+                    <li><a href=""><b>납품 및 컨설팅</b></a></li>
+                    <li><a href=""><b>오피스 커피구독</b></a></li>
+                    <li><a href=""><b>커피위키</b></a></li>
+                    <li><a href=""><b>아카이브</b></a></li>
                   </ul>
                 </div>
               </div>
             </div>
-            <li><a href="#"><b>로그인</b></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <li><a href="#"><b>회원가입</b></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <li><img src="https://cdn-icons-gif.flaticon.com/6416/6416388.gif" alt="" width="30px" href=""><b></b></img></li>
+              <div class="navbar-nav">
+              {% if request.user.is_authenticated %}
+              <div class="navbar-nav fw-bold">
+                  <a class="nav-link" aria-current="page" href="{% url 'accounts:mypage' request.user.pk %}">
+                      {{ request.user }}</a>
+              </div>
+              <div class="navbar-nav fw-bold">
+                  <a class="nav-link" aria-current="page" href="{% url 'accounts:logout' %}">
+                      로그아웃</a>
+              </div>
+              {% else %}
+            <div><li><a href="{% url 'accounts:login' %}"><b>로그인</b></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <li><a href="{% url 'accounts:signup' %}"><b>회원가입</b></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <li><img src="https://cdn-icons-gif.flaticon.com/6416/6416388.gif" alt="장바구니" width="30px" href="{% url 'index' %}"></img></li>
           </li>
+          {% endif %}
         </ul>
-        <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
       </div>
     </nav>
-  </body>
-
-
-<!-- nav-bar -->
-
-
-
-    <script>
-        var div2 = document.getElementsByClassName("search-txt");
-
-        function handleClick(event) {
-            console.log(event.target);
-            // console.log(this);
-            // 콘솔창을 보면 둘다 동일한 값이 나온다
-
-            console.log(event.target.classList);
-
-            if (event.target.classList[1] === "clicked") {
-                event.target.classList.remove("clicked");
-            } else {
-                for (var i = 0; i < div2.length; i++) {
-                    div2[i].classList.remove("clicked");
-                }
-
-                event.target.classList.add("clicked");
-            }
-        }
-
-        function init() {
-            for (var i = 0; i < div2.length; i++) {
-                div2[i].addEventListener("click", handleClick);
-            }
-        }
-
-        init();
-    </script>
-
+  </body>{% block body %}{% endblock body %}
     
-    {% block body %}{% endblock body %}
-    
-
+  {% bootstrap_javascript %}
+  
+  
     <!-- footer -->
 
     <footer class="bg-dark text-center text-white">
@@ -196,5 +147,4 @@
         </div>
         <!-- Copyright -->
       </footer>
-      {% bootstrap_javascript %}
 </html>
