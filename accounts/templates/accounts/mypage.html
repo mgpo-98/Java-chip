@@ -5,7 +5,7 @@
 
 
 <div class="contents">
-    <div class="sidemenu d-block float-start">
+    <div class="sidemenu">
         <div class="sub_box">
             <h2>마이페이지</h2>
             <ul>
@@ -34,7 +34,7 @@
         </div>
     </div>
 
-<div class="container mypage_summary d-block float-end">
+<div class="container mypage_summary">
     <h2> <b>{{ user }}님</b> 안녕하세요!</h2>
     <div>
         <div>
@@ -55,13 +55,41 @@
     </div>
 
 <!-- 리뷰페이지 완성 후 구현 예정-->
-<div class="container">
+
     <h3> 나의 리뷰 </h3>
-</div>
+    <div class="container">
+        <div class="row">
+        {% for review in user.review_set.all %}
+            <div class="col-6 col-sm-3">
+                <!--이미지 버그 수정 필요-->
+                {% if review.reviews_image.all|length %}
+                    {% for image in review.reviews_image.all %}
+                    {% if forloop.counter == 1 %}
+                        <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.image.url }}" alt="{{ review.image }}"></a>
+                    {% endif %}
+                    {% endfor %}
+                {% else %}
+                <a href="{% url 'reviews:detail' review.pk %}"><img src="https://dummyimage.com/100/000/fff"></a>
+                {% endif %}
+                <div class="d-flex">
+                    <p> 좋아요 {{ review.like_users.count }} 개 </p>
+                    <p> 댓글 {{ review.comment_set.count }} 개 </p>
+                </div>
+            </div>
+        {% endfor %}    
+        </div>
+    </div>
+
 <!-- 좋아요 기능 추가되면 구현 예정-->
 <div class="container">
     <h3> 좋아요 누른 글 </h3>
     <p>{{ review.like_users.count }}</p>
+</div>
+
+<!--찜하기 기능 추가시 구현 예정 -->
+<div class="container">
+    <h3> 찜한 상품 </h3>
+
 </div>
 
 
