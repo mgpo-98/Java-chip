@@ -39,7 +39,6 @@ def get_items_info(page, item_nums):
 
 
 def get_item_detail(goods_number):
-    header_image_url = []
     main_image_url = []
     main_text_h1 = []
     main_text_p = []
@@ -55,9 +54,7 @@ def get_item_detail(goods_number):
         ).get_text()
         header_item_image = soup.select_one(
             "div.item_photo_view_box:nth-child(2) > div:nth-child(1) > div:nth-child(1) > span:nth-child(1) > img:nth-child(1)"
-        )["src"][0]
-        header_image_url.append(header_item_image)
-
+        )["src"]
         # main
         main = soup.select_one("div.detail_view:nth-child(1)")
         main_image = main.find_all("img")
@@ -69,11 +66,11 @@ def get_item_detail(goods_number):
             main_text_p.append(i.find("p").get_text())
         return {
             "header_title": header_item_title,  # header 상품명
-            "header_image": header_image_url,  # header 상품이미지
+            "header_image": header_item_image,  # header 상품이미지
             "main_images": main_image_url,  # main 상품 이미지들
             "main_text_title": main_text_h1,  # main 제목들
             "main_text_content": main_text_p,  # main 내용들
         }
 
 
-print("activated")
+print("crawling activated")

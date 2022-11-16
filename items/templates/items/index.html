@@ -1,24 +1,27 @@
 <!-- 빈브라더스 외의 다른 커피점 상품도 추후 추가 -->
 {% extends 'base.html' %}
 {% block body %}
+<!-- navbar 공간확보 -->
+<div class="p-5"></div>
 <!-- 상품 카테고리 -->
-<div class="d-flex align-itmes-center fs-5 text-muted fw-light" style="margin-top:1rem">
-    <p class="ms-5">NEW</p>
-    <p class="ms-5">원두</p>
-    <p class="ms-5">드립백</p>
-    <p class="ms-5">콜드브루</p>
-    <p class="ms-5">캡슐커피</p>
-    <p class="ms-5">선물세트</p>
-    <p class="ms-5">커피용품</p>
-    <p class="ms-5">클래스/워크샵</p>
+<div class="d-flex justify-content-center align-itmes-center fs-5 text-muted fw-light bg-light" style="padding-top:15px">
+    <p class="ms-5"><a href="" class="text-decoration-none text-dark">NEW</a></p>
+    <p class="ms-5"><a href="" class="text-decoration-none text-dark">원두</a></p>
+    <p class="ms-5"><a href="" class="text-decoration-none text-dark">드립백</a></p>
+    <p class="ms-5"><a href="" class="text-decoration-none text-dark">콜드브루</a></p>
+    <p class="ms-5"><a href="" class="text-decoration-none text-dark">캡슐커피</a></p>
+    <p class="ms-5"><a href="" class="text-decoration-none text-dark">선물세트</a></p>
+    <p class="ms-5"><a href="" class="text-decoration-none text-dark">커피용품</a></p>
+    <p class="ms-5"><a href="" class="text-decoration-none text-dark">클래스/워크샵</a></p>
 </div>
+
 <!-- 상품 목록 -->
 <div class="row row-cols-1 row-cols-md-3 g-4 my-5" style="margin: 0px 300px 0px 300px;">
-    {% for i in item %}
+    {% for i in page_obj %}
     <a href="{% url 'items:detail' i.pk %}" class='text-dark text-decoration-none'>
     <div class="col">   
         <div class="card border border-0 p-3">
-            <img src={{i.image_url}} alt="상품이미지예정">
+            <img src={{i.image_url}} alt={{i.title}}>
             <div class="card-body">
                 <h5 class="card-title fw-semibold text-center">{{i.title}}</h5>
                 <div class="card-text text-center">상품영문명칭</div>
@@ -30,12 +33,10 @@
 </div>
 
 <ul class="pagination my-5 d-flex justify-content-center p-5">
-    <li class="page-item active" aria-current="page">
-    <span class="page-link">1</span>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">4</a></li>
+    <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+    <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+    <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
+    <li class="page-item"><a class="page-link" href="?page=4">4</a></li>
 </ul>
 
 {% endblock %}
