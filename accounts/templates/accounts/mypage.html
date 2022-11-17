@@ -66,7 +66,7 @@
                         <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.image.url }}" alt="{{ review.image }}" class="img-thumbnail" ></a>
                 {% else %}
                 <!-- 작성된 리뷰에 이미지가 없을 시 더미 이미지 출력-->
-                <a href="{% url 'reviews:detail' review.pk %}"><img src="https://dummyimage.com/100/000/fff" class="img-thumbnail"></a>
+                    <a href="{% url 'reviews:detail' review.pk %}"><img src="https://dummyimage.com/100/000/fff" class="img-thumbnail"></a>
                 {% endif %}
                 <div class="d-flex">
                     <p> 좋아요 {{ review.like_users.count }} 개 </p>
@@ -77,15 +77,29 @@
         </div>
     </div>
 
-<!-- 좋아요 기능 추가되면 구현 예정-->
-<div class="container">
-    <h3> 좋아요 누른 글 </h3>
-    <p>{{ review.like_users.count }}</p>
-</div>
 
-<!--찜하기 기능 추가시 구현 예정 -->
+    <h3> 좋아요 누른 글 </h3>
+    <div class="container">
+    <div class="row">
+        {% for review in user.like_reviews.all %}
+            <div class="col-6 col-sm-3">
+                {% if review.image %}
+                    <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.image.url }}" alt="{{ review.image }}" class="img-thumbnail" ></a>
+                {% else %}
+                    <a href="{% url 'reviews:detail' review.pk %}"><img src="https://dummyimage.com/100/000/fff" class="img-thumbnail"></a>
+                {% endif %}
+                <div class="d-flex">      
+                    <p> 좋아요 {{ review.like_users.count }} 개 </p>
+                    <p> 댓글 {{ review.comment_set.count }} 개 </p>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+<!--장바구니 기능 추가시 구현 예정 -->
 <div class="container">
-    <h3> 찜한 상품 </h3>
+    <h3> 장바구니에 담은 상품 </h3>
 
 </div>
 
