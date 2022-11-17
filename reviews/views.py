@@ -6,17 +6,33 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Review, Comment
 from reviews.forms import ReviewForm, CommentForm
-
+from django.core.paginator import Paginator
+from django.db.models import Count
 # Create your views here.
 @login_required
 def index(request):
-    reviews = Review.objects.order_by('-pk')
+    sort = request.GET.get('sort','') #url의 쿼리스트링을 가져온다. 없는 경우 공백을 리턴한다
+    if sort == 'created_at':
+        reviews =  Review.objects.order_by('-created_at')
+    elif sort == 'order_at' :
+        reviews =  Review.objects.order_by('-order_at')
+    else :
+        # 좋아요 순 나열 좋아요 개수가 같으면 업데이트 순서로
+        reviews =  Review.objects.annotate(like_count=Count('like_users')).order_by('-like_count', '-updated_at')
+
+    page = request.GET.get('page', '1')
+    paginator = Paginator(reviews, 4)
+    posts = paginator.get_page(page)
     request.GET.get('item_name')
     context = {
         'reviews': reviews,
-        'item_name': request.GET.get('item_name')
+        'item_name': request.GET.get('item_name'),
+        'posts' : posts,
+        
     }
     return render(request, 'reviews/index.html', context)
+
+   
 
     
 
