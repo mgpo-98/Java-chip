@@ -356,64 +356,165 @@ width: 116%;
 opacity:1;
 width: 120%;
 }
-.btn11{
-  top: 0px;
-  font-family: "proxima-nova", sans-serif;
-  font-weight: 500;
-  font-size: 17px;
-  text-transform: uppercase!important;
-  letter-spacing: 2px;
-  color: white
-}
-.btn11:hover{
-  border: 3px solid white;
-  color: black!important;
-}
-.btn11::before {
-  content: '';
-  width: 0%;
-  height: 100%;
-  display: block;
-  background: white;
+.login {
+  width: 410px;
   position: absolute;
-  -ms-transform: skewX(-20deg);
-  -webkit-transform: skewX(-20deg); 
-  transform: skewX(-20deg);   
-  left: -10%;
-  opacity: 1;
-  top: 0;
-  z-index: -12;
-  -moz-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
--o-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
--webkit-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
-   box-shadow:2px 0px 14px rgba(0,0,0,.6);
-} 
-.btn11::after {
-  content: '';
-  width: 0%;
-  height: 100%;
-  display: block;
-  background: white;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.login h2 {
+  padding: 0 0 20px;
+  border-bottom: 2px solid #111;
+  text-align: center;
+  line-height: 1;
+  font-size: 32px;
+  color: #111;
+}
+.login > ul {
+  padding: 40px 0 33px;
+}
+.login > ul li {
+  padding: 0 0 12px;
+  text-align: left;
+}
+.login > ul li input {
+  width: 100%;
+  height: 46px;
+  box-sizing: border-box;
+  text-indent: 16px;
+}
+.login > ul li input::-webkit-input-placeholder {
+  font-size: 16px;
+  color: #9fa19f;
+}
+.login > ul li input[type="checkbox"] {
   position: absolute;
--ms-transform: skewX(-20deg);
-  -webkit-transform: skewX(-20deg); 
-  transform: skewX(-20deg);   
-  left: -10%;
-  opacity: 0;
-  top: 0;
-  z-index: -15;
-  -webkit-transition: all .94s cubic-bezier(.2,.95,.57,.99);
-  -moz-transition: all .4s cubic-bezier(.2,.95,.57,.99);
-  -o-transition: all .4s cubic-bezier(.2,.95,.57,.99);
-  transition: all .4s cubic-bezier(.2,.95,.57,.99);
-  box-shadow: 2px 0px 14px rgba(0,0,0,.6);
+  left: -3000%;
 }
-.btn11:hover::before, .btn1O:hover::before{
-opacity:1;
-width: 116%;
+.login > ul li input[type="checkbox"] + label {
+  height: 36px;
+  line-height: 36px;
 }
-.btn11:hover::after, .btn1O:hover::after{
-opacity:1;
-width: 120%;
+.login > ul li input[type="checkbox"] + label:before {
+  content: "";
+  display: inline-block;
+  margin: 0 10px 0 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #666;
+  background: #fff;
+  vertical-align: -5px;
+}
+.login > ul li input[type="checkbox"]:checked + label:before {
+  background: url(../images/ico_check_on.png) no-repeat center #333;
+  border-color: #333;
+}
+
+.login div {
+  padding: 0 0 45px;
+}
+.login div ul {
+  display: flex;
+  justify-content: center;
+}
+.login div ul li {
+  position: relative;
+  padding: 0 18px;
+}
+.login div ul li ~ li:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  height: 14px;
+  width: 1px;
+  background: #111;
+  transform: rotate(25deg);
+}
+.login div ul li a {
+  font-size: 14px;
+  color: #111;
+}
+.login > a {
+  font-size: 14px;
+  color: #666;
+  border-bottom: 1px solid #666;
+}
+ul {
+  list-style: none;
+  padding-left: 0px;
+}
+.input-box{
+  position:relative;
+  margin:10px 0;
+}
+.input-box > input{
+  background:transparent;
+  border:none;
+  border-bottom: solid 1px #ccc;
+  padding:20px 0px 5px 0px;
+  font-size:14pt;
+  width:100%;
+}
+input::placeholder{
+	color:transparent;
+}
+input:placeholder-shown + label{
+  color:#aaa;
+  font-size:12pt;
+  top:15px;
+}
+input:focus + label, label{
+  color:#8aa1a1;
+  font-size:10pt;
+  pointer-events: none;
+  position: absolute;
+  left:0px;
+  top:0px;
+  transition: all 0.2s ease ;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+}
+input:focus, input:not(:placeholder-shown){
+  border-bottom: solid 1px black;
+  outline:none;
+}
+
+html, body {
+  height: 100%;
+}
+
+.wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  width: 140px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 1000;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+
+.button:hover {
+  background-color: black;
+  box-shadow: 0px 15px 20px gray(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
 }
