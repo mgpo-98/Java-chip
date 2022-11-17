@@ -35,3 +35,8 @@ class ItemDetail(models.Model):
     main_images_url = models.ForeignKey(MainImageUrl, on_delete=models.CASCADE)
     main_text_title = models.TextField()
     main_text_content = models.TextField()
+
+
+# accounts에 ForeiginKey로 연결
+class ItemPicked(models.Model):
+    picked_item = models.ForeignKey(Item, on_delete=models.CASCADE)
