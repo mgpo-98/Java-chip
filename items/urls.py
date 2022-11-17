@@ -5,6 +5,6 @@ app_name = "items"
 urlpatterns = [
     path("", views.index, name="index"),
     path("<int:item_pk>/", views.detail, name="detail"),
-    path("pick/<int:item_pk>/", views.pick, name="pick"),  # 임시 경로
-    path("test/", views.test, name="test"),
+    path("pick/", views.pick, name="pick"),  # 임시 경로
+    path("pick/delete", views.delete_picked, name="delete_picked"),
 ]
