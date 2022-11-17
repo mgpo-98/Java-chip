@@ -4,22 +4,16 @@
     background-size: cover;
 }
 
-#buy_button{
+#buy-button{
     padding:10px 85px 10px 85px;
 }
 
-#buy_button a{
+a {
     text-decoration: none;
     color:black;
 }
 
 #pick-button{
-    padding:10px 85px 10px 85px;
-    text-decoration: none;
-    color:black;
-}
-
-#pick-button a {
     padding:10px 85px 10px 85px;
     text-decoration: none;
     color:black;
