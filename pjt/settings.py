@@ -9,6 +9,12 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+# aws 설정
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 from pathlib import Path
 
@@ -23,7 +29,28 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-73rp858jo4ko8$!srm!%(f4!ek7e)7lhnn1e$g^+f#6_s*z9c^"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+
+DEBUG = os.getenv("DEBUG") == "True"
+
+if DEBUG:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.getenv("DATABASE_NAME"),  # 코드 블럭 아래 이미지 참고하여 입력
+            "USER": "postgres",
+            "PASSWORD": os.getenv("DATABASE_PASSWORD"),  # 데이터베이스 생성 시 작성한 패스워드
+            "HOST": os.getenv("DATABASE_HOST"),  # 코드 블럭 아래 이미지 참고하여 입력
+            "PORT": "5432",
+        }
+    }
 
 ALLOWED_HOSTS = []
 
@@ -31,6 +58,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "storages",
     "items",
     "django_bootstrap5",
     "django_extensions",
@@ -59,7 +87,6 @@ ROOT_URLCONF = "pjt.urls"
 
 TEMPLATES = [
     {
-
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [BASE_DIR / "pjt" / "templates"],
         "APP_DIRS": True,
@@ -80,13 +107,23 @@ WSGI_APPLICATION = "pjt.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "jchip_rds",  # 코드 블럭 아래 이미지 참고하여 입력
+#         "USER": "postgres",
+#         "PASSWORD": "87651234!",  # 데이터베이스 생성 시 작성한 패스워드
+#         "HOST": "jchipbucket-rds.cgtj03mgrtke.ap-northeast-2.rds.amazonaws.com",  # 코드 블럭 아래 이미지 참고하여 입력
+#         "PORT": "5432",
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -137,5 +174,18 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-MEDIA_ROOT = BASE_DIR / "media"
-MEDIA_URL = "/media/"
+# MEDIA_ROOT = BASE_DIR / "media"
+# MEDIA_URL = "/media/"
+
+# 아래 코드 추가
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+
+AWS_REGION = "ap-northeast-2"
+AWS_S3_CUSTOM_DOMAIN = "%s.s3.%s.amazonaws.com" % (
+    AWS_STORAGE_BUCKET_NAME,
+    AWS_REGION,
+)
