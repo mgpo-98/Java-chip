@@ -76,15 +76,11 @@
                 </div>
               </div>
             </div>
-              <div class="navbar-nav">
-              {% if request.user.is_authenticated %}
-              <div class="navbar-nav fw-bold">
-                  <a class="nav-link" aria-current="page" href="{% url 'accounts:mypage' request.user.pk %}">
-                      {{ request.user }}</a>
-              </div>
-              <div class="navbar-nav fw-bold">
-                  <a class="nav-link" aria-current="page" href="{% url 'accounts:logout' %}">
-                      로그아웃</a>
+            <div>
+              {% if request.user.is_authenticated %}<li><a aria-current="page"  href="{% url 'accounts:mypage' request.user.pk %}"><b>{{ request.user }}</b></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <li><a aria-current="page" href="{% url 'accounts:logout' %}"><b>로그아웃</b></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <li><img src="https://cdn-icons-gif.flaticon.com/6416/6416388.gif" alt="장바구니" width="30px" href="{% url 'index' %}"></img></li>
+            </li>
               </div>
               {% else %}
             <div><li><a href="{% url 'accounts:login' %}"><b>로그인</b></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
