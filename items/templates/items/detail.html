@@ -2,15 +2,16 @@
 {% load static %}
 {% block body %}
 <header class="d-flex justify-content-between align-items-center" style="height:800px; margin: 0px 300px 0px 300px">
-    <div style="width:470px">
+    <form style="width:470px" id='buy/pick-form'action="{% url 'items:picking' %}" method="POST">
+        {% csrf_token %}
         <h1 class="fw-bold mb-5">상품명</h1>
         <label class='form-label' for="">용량</label>
-        <select class='form-select mb-3' name="" form="buy/pick-form">
+        <select class='form-select mb-3' name="volume" form="buy/pick-form">
             <option selected>= 용량 선택 =</option>
             <option value="200">200</option>
         </select>
         <label class='form-label' for="">분쇄도</label>
-        <select class='form-select mb-5' name="" form="buy/pick-form">
+        <select class='form-select mb-2' name="smashed" form="buy/pick-form">
             <option selected>= 분쇄도 선택 : 가격 =</option>
             <option value="홀빈(갈지않음)">홀빈(갈지않음)</option>
             <option value="핸드드립/커피메이커">핸드드립/커피메이커</option>
@@ -20,49 +21,25 @@
             <option value="에스프레소머신">에스프레소머신</option>
             <option value="콜드브루/더치">콜드브루/더치</option>
         </select>
+        <div class="d-flex justify-content-end">
+            <div class="mb-0 me-2 pt-2 align-middle">수량</div>
+            <input type="text" name="amount" class="form-control" style="width:45px">
+        </div>
         <div class="d-flex justify-content-between">
             <button id="buy-button" type="button" class="btn btn-dark rounded-0"><a href="">구매하기</a></button>
-            <form id='buy/pick-form'action="{% url 'items:pick' %}" method="POST">
-                {% csrf_token %}
-                <!-- 버튼을 누르면 페이지의 item_pk 값이 전송된다. -->
-                <button id="pick-button" type="submit" class="btn btn-outline-dark rounded-0" name="item_picked"value="{{item_pk}}">찜하기</button>
-                <!-- 버튼을 누르면 장바구니에 담겼다는 popover창이 뜬다 -->
-            </form>
+            <!-- 버튼을 누르면 페이지의 item_pk 값이 전송된다. -->
+            <button id="pick-button" type="submit" class="btn btn-outline-dark rounded-0" name="item_picked" value="{{item_pk}}">장바구니</button>
+            <!-- 버튼을 누르면 장바구니에 담겼다는 popover창이 뜬다 -->
         </div>
-        <!-- 네이버페이 -->
-        <div class="d-flex justify-content-end mt-2">
-            <button type="button" id="naverPayBtn" value="네이버페이 결제 버튼" style="padding:5px 20px 5px 20px">네이버페이</button>
-            <script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>
-            <script>
-                var oPay = Naver.Pay.create({
-                    "mode" : "production", // development or production
-                    "clientId": "u86j4ripEt8LRfPGzQ8" // clientId
-                });
-
-                //직접 만드신 네이버페이 결제버튼에 click Event를 할당하세요
-                var elNaverPayBtn = document.getElementById("naverPayBtn");
-
-                elNaverPayBtn.addEventListener("click", function() {
-                    oPay.open({
-                    "merchantUserKey": "가맹점 사용자 식별키",
-                    "merchantPayKey": "가맹점 주문 번호",
-                    "productName": "상품명을 입력하세요",
-                    "totalPayAmount": "1000",
-                    "taxScopeAmount": "1000",
-                    "taxExScopeAmount": "0",
-                    "returnUrl": "사용자 결제 완료 후 결제 결과를 받을 URL"
-                    });
-                });
-            </script>
-        </div>
-    </div>
+    </form>
     <!-- header 우측 -->
     <div>
         <img src="https://dummyimage.com/800x800/8a8a8a/fff" alt="상품이미지">
     </div>
+
 </header>
 <!-- header, main 사이 : fact_sheet, about_this_coffee -->
-<div class="row bg-white py-5" style="height:380px; margin: 0px 300px 0px 300px;">
+<!-- <div class="row bg-white py-5" style="height:380px; margin: 0px 300px 0px 300px;">
     <div class="col-4 ps-5" >
         <p class="fw-semibold">FACT SHEET</p>
         <div class="mt-5">
@@ -93,7 +70,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <main style='margin: 0px 300px 0px 300px;'>
     <div class="d-flex bg-light align-items-center mt-5" >
