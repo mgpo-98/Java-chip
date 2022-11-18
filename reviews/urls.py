@@ -7,7 +7,7 @@ app_name ='reviews'
 urlpatterns = [
     path('', views.index, name='index'),
     # 리뷰작성 
-    path('create/', views.create, name='create'),
+    path('<int:item_id>/create/', views.create, name='create'),
     # 리뷰 상세 조회
     path('<int:pk>/', views.detail, name='detail'),
     # 리뷰 수정

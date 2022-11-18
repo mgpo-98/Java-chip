@@ -13,7 +13,7 @@
 <div>
     <!-- 아이템 이름 -->
     <div class='container'>
-        <h3>아이템 이름</h3><a href="{ url 'items:item' review.item_id }">{{ review.item_title }}</a>
+        <h3>아이템 이름 : <a href="{% url 'items:detail' review.item_id %}">{{ review.item.title }}</a></h3>
         <h3>리뷰제목 : {{ review.title }}</h3>
 
         <!-- 사용자 이름 프로필 구현  -->
@@ -48,7 +48,15 @@
             <img src='{{ review.image.url }}' alt='{{ review.image }}' width="400" height="300"
                 style='border-radius:4px;'>
         </div>
-
+        {% comment %} 기본 이미지 {% endcomment %}
+        {% else %}
+        
+        <div style='text-align:center'>
+            
+            <img src='{{ review.item.image_url }}' alt='{{ review.item.image_url }}' width="400" height="300"
+                style='border-radius:4px;'>
+        </div>
+        
         {% endif %}
         <!-- 리뷰 내용 -->
         <p class="me-3-5 mt-3 text-break">{{ review.content }}</p>

@@ -37,23 +37,27 @@ def index(request):
     
 
 @login_required # 로그인 한경우만 리뷰 작성 가능
-def create(request):
+def create(request, item_id):
+    item_title = request.GET.get('item_title')
+    print(request.GET.get('item_title'))
     if request.method == 'POST':
-        review_form = ReviewForm(request.POST,  request.FILES)
-   
+        review_form = ReviewForm(request.POST, request.FILES)
         if review_form.is_valid():
             review = review_form.save(commit=False)
-            review.user = request.user
-
+            # 로그인한 유저 => 작성자네!
+            review.user = request.user 
+            review.item_id = item_id
+            review.item_title = item_title
             review.save()
+            messages.success(request, '리뷰 작성이 완료되었습니다.')
             return redirect('reviews:index')
-    else:
+    else: 
         review_form = ReviewForm()
     context = {
-        'review_form' : review_form,
-        
+        'review_form': review_form,
+        'item_title': request.GET.get('item_title')
     }
-    return render(request,'reviews/form.html',  context=context)
+    return render(request, 'reviews/form.html', context=context)
 
 # 리뷰 삭제
 @login_required
@@ -71,7 +75,7 @@ def delete(request, pk):
 
 def detail(request, pk):
     review = get_object_or_404(Review, pk=pk)
-
+    
     comment_form = CommentForm()
     # template에 객체 전달
     context = {
