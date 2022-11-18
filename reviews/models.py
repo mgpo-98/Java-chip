@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-
+from items.models import Item
 # 이미지
 from imagekit.models import ImageSpecField, ProcessedImageField
 from imagekit.processors import ResizeToFill
@@ -16,9 +16,8 @@ class Review(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
     order_at = models.DateField('구매일', null=True)
-    
     image = ProcessedImageField(upload_to='images/', blank=True,
                             processors=[ResizeToFill(1200, 960)],
                             format='JPEG',
