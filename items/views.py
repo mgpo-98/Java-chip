@@ -42,7 +42,8 @@ def index(request):
             )
 
     # pagination
-    paginator = Paginator(item, 9)
+    ordered_item = Item.objects.order_by("pk")
+    paginator = Paginator(ordered_item, 9)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     context = {
@@ -62,6 +63,20 @@ def detail(request, item_pk):
 
 # 담은 상품의 정보를 ItemPicked 테이블에 저장한 후 redirect한다.
 def picking(request):
+    print(request)
+    # picked_items를 itemPicked 테이블에 추가한다
+    if request.method == "POST":
+        item_info = request.POST.get("item_picked")
+        item_smashed = request.POST.get("smashed")
+        item_volume = request.POST.get("volume")
+        item_amount = request.POST.get("amount")
+        picked_items = Item.objects.filter(pk=item_info)
+        for i in picked_items:
+            picked_item_list = ItemPicked(
+                picked_item=i,
+                amount=item_amount,
+            )
+        picked_item_list.save()
     return redirect("items:pick")
 
 
@@ -70,21 +85,8 @@ def pick(request):
     # 등록되지 않은 유저의 경우
     # 찜한 아이템이 없는 경우
     # 아이템을 찜한 경우
-    # picked_items를 itemPicked 테이블에 추가한다
-    if request.method == "POST":
-        item_info = request.POST.get("item_picked")
-        print(item_info)
-        picked_items = Item.objects.filter(pk=item_info)
-        for i in picked_items:
-            picked_item_list = ItemPicked(
-                picked_item=i,
-            )
-        picked_item_list.save()
-        picked = ItemPicked.objects.all()
-        picked_count = picked.aggregate(count=(Count("id")))
-    else:
-        picked = ItemPicked.objects.all()
-        picked_count = picked.aggregate(count=(Count("id")))
+    picked = ItemPicked.objects.all()
+    picked_count = picked.aggregate(count=(Count("id")))
     context = {
         "picked": picked,
         "picked_count": picked_count["count"],
@@ -98,3 +100,10 @@ def delete_picked(request):
 
 # 조회수 순 정렬 버튼
 # 검색 기능
+
+# select에서 데이터 불러오기
+# 장바구니 데이터 input 수정
+# 크롤링코드 수정(csv로 불러오도록)
+# form modal 추가
+# hover 효과 적용
+# 상세페이지에 review table 추가
