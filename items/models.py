@@ -40,3 +40,6 @@ class ItemDetail(models.Model):
 # accounts에 ForeiginKey로 연결
 class ItemPicked(models.Model):
     picked_item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    smashed = models.TextField()
+    volume = models.TextField()
+    amount = models.IntegerField()
