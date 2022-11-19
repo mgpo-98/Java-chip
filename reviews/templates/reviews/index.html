@@ -66,14 +66,14 @@
       {% endif %}
   </ul>
   {% comment %} 순서 정렬 {% endcomment %}
-  <select id="sort-select" onchange="location = this.value;">
+  <select id="sort-select" onchange="location = this.value;" class='mb-3'>
     <option class="sort-created_at" value="?sort=created_at">ㅡㅡㅡㅡㅡㅡㅡ</option>
     <option class="sort-created_at" value="?sort=created_at">최근 작성글 순</option>
     <option class="sort-order_at" value="?sort=order_at">상품 구매 최신일순</option>
     <option class="sort-likes" value="?sort=likes">좋아요순</option>
   </select>
       {% comment %} 리뷰 카드들 {% endcomment %}
-      <div class="row row-cols-4 g-2"  >
+      <div class="row row-cols-4 g-2 ml-5"   >
 
         {% for review in posts %}
         <div class='col'>
@@ -81,12 +81,12 @@
             <div class="card-header text-center" style="font-family: 'SDSamliphopangche_Basic';">
 
               {% comment %} 아이템 이름 {% endcomment %}
-              <a href="{% url 'items:detail' review.item_id %}">{{ review.item.title }}</a>
+              <h4 class='mt-2'><a href="{% url 'items:detail' review.item_id %} "class='text-decoration-none  ' style='color:black ' >{{ review.item.title }}</a></h4>
             </div>
 
             <div class='d-flex justify-content-between m-2'>
               {% comment %} 사용자 이름 {% endcomment %}
-              <a  href="{% url 'accounts:profile' review.user.pk %}"><div>{{ review.user.username }}</div></a>
+              <a  href="{% url 'accounts:mypage' review.user.pk %}"class='text-decoration-none fw-bolder m-1' style='color:black'><div >{{ review.user.username }}</div></a>
               {% comment %} 상품 구매일{% endcomment %}
               <div>상품 구매일 : {{ review.order_at.isoformat }}</div>
             </div>
@@ -99,27 +99,28 @@
             <img src={{ review.item.image_url }} class="card-img-top" alt="{{ review.item.image_url }}" style='height:278.4px; object-fit: cover;'>
             {% endif %}
             <div class="card-body">
-              <h4 class="text-align-center" >
-                {% comment %} 리뷰 제목 {% endcomment %}
+              <i style='color:red' class="bi bi-heart-fill  position-absolute bottom-0 start-0 m-3 mb-2 "> {{ review.like_users.count }}</i>
+              {% comment %} 리뷰 제목 {% endcomment %}
+              <h4 class="text-center" >
                 {{ review.title }}
               </h4>
               <hr>
               {% comment %} 리뷰 내용 {% endcomment %}
-                <ul class="list-group list-group-flush">
-                      <li class="list-group-item">
-                        <p class="card-text" >
-                        {{ review.content|truncatechars:50 }}</p>
-                      </li>
-                  </ul>
-                  <i style='color:red' class="bi bi-heart-fill"></i> {{ review.like_users.count }}
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <p class="card-text" >
+                    {{ review.content|truncatechars:50 }}</p>
+                    
+                  </li>
+                  
+                  
+                </ul>
           
                   {% comment %} 좋아요 기능 {% endcomment %}
-                  
 
-                  
               </div>
               <div class="card-footer text-center" >
-                <a href="{% url 'reviews:detail' review.pk %}" class='text-decoration-none'>상세보기</a>
+                <a href="{% url 'reviews:detail' review.pk %}" class='text-decoration-none' style='color:rgb(188,137,70); font-weight: bold;'>상세보기</a>
               </div>
             </article>
           </div>
