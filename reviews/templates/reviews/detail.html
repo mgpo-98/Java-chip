@@ -6,17 +6,32 @@
 {% block css %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link rel="icon" href="https://templates.pingendo.com/assets/Pingendo_favicon.ico">
+
+
+
+
 {% endblock css %}
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap" rel="stylesheet">
+    <style>
+        @font-face{
+        font-family :'Dongle';
+        src: url("https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap") format('woff');
+        font-weight: normal;
+        font-style: normal;}
 
-
+    </style>
+</head>
 
 <div>
     <!-- 아이템 이름 -->
     <div class='container'>
-        <h3>아이템 이름 : <a href="{% url 'items:detail' review.item_id %}" style='color:black' class='text-decoration-none '>{{ review.item.title }}</a></h3>
-        <h3>리뷰제목 : {{ review.title }}</h3>
-
+        <h2 class='text-center mb-5'> {{ review.title }}</h2>
+        
         <!-- 사용자 이름 프로필 구현  -->
+        <h4 style=' background-color:#ffe4c4; width: 420px; border-radius: 30rem; height: 35px; text-align:center; ' class='mb-5'> 구매 상품 : <a href="{% url 'items:detail' review.item_id %}" style='color:black;' class='text-decoration-none '>{{ review.item.title }}</a></h4>
         <div class="header d-flex">
             <!-- 프로필 -->
             <span class="username">
@@ -59,7 +74,7 @@
         
         {% endif %}
         <!-- 리뷰 내용 -->
-        <p class="me-3-5 mt-3 text-break">{{ review.content }}</p>
+        <p class="me-3-5 mt-3 text-break" style='background-color:#D3D3D3; border-radius: 5%; font-family: 'Dongle', sans-serif; '>{{ review.content }}</p>
 
 
         <!-- 좋아요 버튼 -->
@@ -115,7 +130,7 @@
         <div class='py-3'>
             <div class="align-items-center">
                 {{ comment.user.username }} : {{ comment.content }}
-                {{ comment.created_at }}
+                <p class='d-flex justify-content-end' >{{ comment.created_at }}</p>
             </div>
 
             {% comment %} 댓글을 작성한 user가 리뷰를 쓴 유저인 경우 {% endcomment %}
