@@ -81,7 +81,7 @@ def password(request):
 def delete(request):
     request.user.delete()
     auth_logout(request)
-    return redirect("reviews:index")
+    return redirect("/")
 
 def mypage(request, pk):
     user = get_user_model().objects.get(pk=pk)
