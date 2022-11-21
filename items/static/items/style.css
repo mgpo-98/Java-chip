@@ -99,6 +99,10 @@
     color:black;
 }
 
+#review-write i:hover{
+    background-color: lightgray;
+}
+
 /* #pick-deliver dl dt{
 
 } */

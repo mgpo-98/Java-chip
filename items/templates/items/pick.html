@@ -33,7 +33,7 @@
             <tbody>
                 {% for i in picked %}
                 <tr style="padding: 30px 0px 30px 0px;">
-                        <th class="text-center align-middle"><input type="checkbox" name="checked_item" value="{{i}}" form="pick_item_pick-form"></th>
+                        <th class="text-center align-middle"><input type="checkbox" name="checked_item" value="{{i}}" form="pick-delete-form"></th>
                     <td class="pt-4 d-flex">
                         <img src={{i.picked_item.image_url}} alt="item_image" style="height: 90px;">
                         <div id="picked_item_info">
@@ -57,15 +57,22 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>{{i.picked_item.title}}</p>
+                                    <div class="d-flex">
+                                        <img src="{{i.picked_item.image_url}}" alt="item_image" style="height: 100px;" class="mt-1">
+                                        <div id="picked_item_info">
+                                            <p class="fw-bold mb-2 ms-2 mt-3">{{i.picked_item.title}}</p>
+                                            <p class="mb-0 text-muted ms-2" style="font-size: 15px;">배송비 3000원 </p>
+                                            
+                                        </div>
+                                    </div>
                                     <form action="{% url 'items:picking' %}" method="POST">
                                         <div style="width:470px">
-                                        <p class="text-start">용량</p>
+                                        <p class="text-start my-2">용량</p>
                                         <select class='form-select mb-3' id="volume1"name="" form="buy/pick-form">
                                             <option selected>= 용량 선택 =</option>
                                             <option value="200">200</option>
                                         </select>
-                                        <p class="text-start">분쇄도</p>
+                                        <p class="text-start my-2">분쇄도</p>
                                         <select class='form-select mb-5' name="" form="buy/pick-form">
                                             <option selected>= 분쇄도 선택 : 가격 =</option>
                                             <option value="홀빈(갈지않음)">홀빈(갈지않음)</option>
@@ -96,7 +103,7 @@
         <div id="pick-deliver" class="bg-light py-4 d-flex justify-content-center align-items-center fs-5">
             <dl class="p-4 text-center">
                 <dt class="fw-light">주문 금액</dt>
-                <dd class="mt-3 fw-bold">{{picked.0.picked_item.price}}</dd>
+                <dd id='price' class="mt-3 fw-bold">{{picked.0.picked_item.price}}</dd>
             </dl>
             <span class="p-4">+</span>
             <dl class="p-4 text-center">
@@ -106,16 +113,16 @@
             <span class="p-4">=</span>
             <dl class="p-4 text-center">
                 <dt class="fw-light">합계</dt>
-                <dd class="mt-3 fw-bold">{{picked.0.picked_item.price}}</dd>
+                <dd id='order-price' class="mt-3 fw-bold">{{picked.0.picked_item.price}}</dd>
             </dl>
         </div>
-        <form id='pick_item_pick-form'action="{% url 'items:delete_picked' %}" method='POST'>
+        <form id='pick-delete-form'action="{% url 'items:delete_picked' %}" method='POST'>
         {% csrf_token %}
         <div id='pick_action' class="d-flex justify-content-between text-muted fs-6 mt-2">
             <button class='btn round fw-semibold'><a href="{% url 'items:index' %}">쇼핑계속하기</a></button>
             <div>
-                <button class='btn round fw-semibold' type="submit" form="">주문 금액 보기</button>
-                <button class='btn round fw-semibold' type="submit">선택 상품 삭제</button>
+                <button id='order-price'class='btn round fw-semibold' type="submit" form="">주문 금액 보기</button>
+                <button class='btn round fw-semibold' type="submit" form="pick-delete-form">선택 상품 삭제</button>
                 fetch06
             </div>
         </div>
@@ -126,6 +133,14 @@
             </div> -->
         </div>
     </div>
-
+    <script>
+        const orderPriceShow = document.getElementById('order-price')
+        function sum_(){
+            const price = document.getElementById('price')
+            const order_price = document.getElementById('order-price')
+            
+        }
+        orderPriceShow.addEventListener('click',)
+    </script>
 
 {% endblock %}
