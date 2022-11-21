@@ -78,11 +78,13 @@ def picking(request):
             smashed=item_smashed,
             volume=item_volume,
         )
-        # if len(picked_item_list) != 0:
-        #     picked_item_list.picked_item = picked_items
-        #     picked_item_list.amount = item_amount
-        #     picked_item_list.volume = item_volume
-        # picked_item_list.save()
+        if picked_item_list:
+            ItemPicked.picked_item_id = item_info
+            ItemPicked.amount = item_amount
+            ItemPicked.smashed = item_smashed
+            ItemPicked.volume = item_volume
+        picked_item_list.save()
+
     return redirect("items:pick")
 
 
@@ -101,8 +103,8 @@ def pick(request):
 
 
 def delete_picked(request):
-    request.POST.delete()
-
+    item_checked = request.POST.get("checked_item")
+    ItemPicked.objects.get(pk=item_checked).delete()
     return redirect("items:pick")
 
 
