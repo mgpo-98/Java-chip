@@ -28,29 +28,35 @@
                     <a href="{% url 'accounts:update' %}">회원정보 수정</a>
                 </li>
                 <li>
-                    <a href="#">회원 탈퇴</a>
+                    <a href="{% url 'accounts:delete' %}">회원 탈퇴</a>
                 </li>
             </ul>
         </div>
     </div>
 
 <div class="container mypage_summary">
-    <h2> <b>{{ user }}님</b> 안녕하세요!</h2>
+    <h2> <b>{{ user.username }}님</b> 안녕하세요!</h2>
     <div>
         <div>
+            {# 팔로우 버튼 #}
             {% if request.user.is_authenticated %}
             {% if request.user != user %}
+            <form id='follow-form' data-user-id='{{ user.pk }}' >
+                {% csrf_token %}
                 {% if request.user in user.followers.all %}
-                <span id="follow" data-user-id="{{ user.pk }}" class="btn btn-light">팔로잉</span>
+                <input type='submit' class="btn btn-outline-danger mb-3" value="언팔로우" >
                 {% else %}
-                <span id="follow" data-user-id="{{ user.pk }}" class="btn btn-dark">팔로우</span>
+                <input type='submit' class="btn btn-outline-success mb-3" value="팔로우">
                 {% endif %}
+            </form>
             {% endif %}
             {% endif %}
         </div>
         <div class="d-flex">
-            <p>팔로워 {{ user.followers.count }}</p>
-            <p>팔로우 {{ user.followings.count }}</p>
+            <p style="font-family: 'ONE-Mobile-POP';">
+                팔로워 : <span id ='followers-count'>{{ user.followers.all|length }} </span>
+                팔로잉 : <span id ='followings-count'>{{ user.followings.all|length }} </span>
+            </p>
         </div>
     </div>
 
@@ -69,7 +75,22 @@
                     <a href="{% url 'reviews:detail' review.pk %}"><img src="https://dummyimage.com/100/000/fff" class="img-thumbnail"></a>
                 {% endif %}
                 <div class="d-flex">
-                    <p> 좋아요 {{ review.like_users.count }} 개 </p>
+                    {% if request.user.is_authenticated %}
+                    <span>
+                        <form data-review-id='{{ review.pk }}' id='like-btn' class="like-heart">
+                          {% csrf_token %}
+                          <button style='background-color:transparent; border:none;' class='review-detail-like-btn' type='submit'>
+                            {% if request.user in review.like_users.all %}
+                              <i style='color:red' class="bi bi-heart-fill"></i>
+                              <span id='review-like-user-cnt'>{{ review.like_users.count }} 개</span>
+                            {% else %}
+                              <i style='color:red' class="bi bi-heart"></i>
+                              <span id='review-like-user-cnt'>{{ review.like_users.count }} 개</span>
+                            {% endif %}
+                          </button>
+                        </form>
+                    </span>
+                    {% endif %}
                     <p> 댓글 {{ review.comment_set.count }} 개 </p>
                 </div>
             </div>
@@ -103,31 +124,7 @@
 
 </div>
 
-
+<script src='{% static "js/accounts/follower.js" %}'></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-    const followBtn = document.querySelector('#follow')
-    followBtn.addEventListener('click', function(event) {
-        axios({
-            method: 'get',
-            url: `/accounts/follow/${event.target.dataset.userId}/`
-        })
-        .then(response => {
-            if( response.data.is_followed == true) {
-                event.target.classList.remove('btn-dark')
-                event.target.classList.add('btn-light')
-                followBtn.innerText= '팔로잉'
-            } else {
-                event.target.classList.remove('btn-light')
-                event.target.classList.add('btn-dark')
-                followBtn.innerText='팔로우'
-            }
-            const followers = document.querySelector('#followers')
-            const followings = document.querySelector('#followings')
-            followers.innerText = response.data.followersC
-            followings.innerText = response.data.followingsC
-        })
-    })
-</script>
-
 {% endblock %}
+
