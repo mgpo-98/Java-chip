@@ -53,12 +53,12 @@ def detail(request, item_pk):
         ItemDetail.objects.bulk_create(bulk_list)
     review = Review.objects.filter(item_id=item_pk)
     item_detail = ItemDetail.objects.get(pk=item_pk)
-    item_info = Item.objects.get(pk=item_pk)
+    item_details = ItemDetail.objects.all()
     context = {
         "item_detail": item_detail,
         "item_pk": item_pk,
         "review": review,
-        "item_info": item_info,
+        "item_details": item_details,
     }
     return render(request, "items/detail.html", context)
 

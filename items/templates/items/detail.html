@@ -73,14 +73,31 @@
 </div> -->
 
 <main class='mt-5 pt-5' style='margin: 0px 300px 0px 300px;'>
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleControls" class="carousel slide ms-5 ps-5" data-bs-ride="carousel">
         <div class="carousel-inner">
         <!-- 다른 모든 상품들 링크 carousel로 바꾸기 : 3개씩 -->
-        {% for i in items_info %}
           <div class="carousel-item active">
-            <img src={{i.image_url}} class="d-block w-100" alt="...">
+            <div class="d-flex">
+                <img src={{item_details.1.header_image}} class="d-block" alt="..." style="height: 400px;">
+                <img src={{item_details.2.header_image}} class="d-block" alt="..." style="height: 400px;">
+                <img src={{item_details.12.header_image}} class="d-block" alt="..." style="height: 400px;">
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="d-flex">
+                <img src={{item_details.13.header_image}} class="d-block" alt="..." style="height: 400px;">
+                <img src={{item_details.5.header_image}} class="d-block" alt="..." style="height: 400px;">
+                <img src={{item_details.6.header_image}} class="d-block" alt="..." style="height: 400px;">
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="d-flex">
+                <img src={{item_details.7.header_image}} class="d-block" alt="..." style="height: 400px;">
+                <img src={{item_details.8.header_image}} class="d-block" alt="..." style="height: 400px;">
+                <img src={{item_details.17.header_image}} class="d-block" alt="..." style="height: 400px;">
+            </div>
           </div>
-        {% endfor %}
+        
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -123,7 +140,7 @@
             </div>
         </div>
         <!-- review -->
-        <!-- <div class="my-5">
+        <div class="my-5">
             <h1>REVIEW</h1>
             <div class="d-flex align-items-start justify-content-center" style="height:300px">
                 <table class="table table-hover text-center">
@@ -151,7 +168,7 @@
                   </table>
                 <p>{{i.title}}</p>
             </div>
-        </div> -->
+        </div>
     </div>
     <!-- <div class="mt-5 p-5 bg-light">
         <h1 class="pt-5">RECOMMEND</h1>
