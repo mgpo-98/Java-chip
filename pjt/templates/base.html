@@ -88,7 +88,7 @@
                 <a aria-current="page" href="{% url 'accounts:logout' %}"><b>로그아웃</b></a>
               </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <li>
-                <img src="https://cdn-icons-gif.flaticon.com/6416/6416388.gif" alt="장바구니" width="30px" href="{% url 'index' %}"></img></li>
+                <a href="{% url 'items:pick' %}"><img src="https://cdn-icons-gif.flaticon.com/6416/6416388.gif" alt="장바구니" width="30px"></img></a></li>
             </li>
               </div>
               {% else %}
@@ -97,7 +97,7 @@
               </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div><li><a href="{% url 'accounts:login' %}"><b>로그인</b></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <li><a href="{% url 'accounts:signup' %}"><b>회원가입</b></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <li><img src="https://cdn-icons-gif.flaticon.com/6416/6416388.gif" alt="장바구니" width="30px" href="{% url 'index' %}"></img></li>
+            <li><a href="{% url 'items:pick' %}"><img src="https://cdn-icons-gif.flaticon.com/6416/6416388.gif" alt="장바구니" width="30px"></img></a></li>
           </li>
           {% endif %}
           
