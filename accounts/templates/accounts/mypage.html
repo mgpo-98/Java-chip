@@ -51,7 +51,7 @@
             {% endif %}
         </div>
         <div class="d-flex">
-            <p>
+            <p class="mx-2 fs-5">
                 팔로워 : <span id ='followers-count'>{{ user.followers.all|length }} </span>
                 팔로잉 : <span id ='followings-count'>{{ user.followings.all|length }} </span>
             </p>
@@ -60,35 +60,84 @@
 
 <!-- 리뷰페이지 완성 후 구현 예정-->
 
-    <div class="container">
+    <div class="container mt-4">
         <h3> {{ user.username }}님의 리뷰 </h3>
-        <div class="row">
+        <div class="row gy-3">
         {% for review in user.review_set.all %}
             <div class="col-6 col-sm-3">
                 <!--작성된 리뷰에 이미지가 있다면 해당 이미지 파일 출력-->
-                {% if review.image %}
-                        <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.image.url }}" alt="{{ review.image }}" class="img-thumbnail" ></a>
-                {% else %}
-                <!-- 작성된 리뷰에 이미지가 없을 시 더미 이미지 출력-->
-                    <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.item.image_url }}" class="img-thumbnail"></a>
-                {% endif %}
-                {{ review.content|truncatechars:10 }}
-                <div class="d-flex">
-                    {% if request.user.is_authenticated %}
-                    <form data-review-id='{{ review.pk }}' id='like-btn' class="like-heart">
-                        {% csrf_token %}
-                        <button style='background-color:transparent; border:none;' class='review-detail-like-btn' type='submit'>
-                            {% if request.user in review.like_users.all %}
-                            <i style='color:red' class="bi bi-heart-fill"></i>
-                            <span id='review-like-user-cnt'>{{ review.like_users.count }}개</span>
-                            {% else %}
-                            <i style='color:red' class="bi bi-heart"></i>
-                            <span id='review-like-user-cnt'>{{ review.like_users.count }}개</span>
-                            {% endif %}
-                        </button>
-                    </form>
+                <div class="card" style="margin:1px;">
+                    {% if review.image %}
+                    <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.image.url }}" alt="{{ review.image }}" class="card-img-top" width="300" height="300" ></a>
+                <!--더미이미지-->
+                    {% else %}
+                    <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.item.image_url }}" class="card-img-top" width="300" height="300"></a>
                     {% endif %}
-                    <p> 댓글 {{ review.comment_set.count }} 개 </p>
+                    
+                    <div class="card-body">
+                        <p class="card-text"><strong class="me-2">{{ review.title }}</strong><small>{{ review.created_at|naturaltime }} </small></p>
+                        <p class="card-text">{{ review.content|truncatechars:10 }}</p>
+                        <!-- 좋아요 -->
+                        <div class="d-flex">
+                            {% if request.user.is_authenticated %}
+                                <form data-review-id='{{ review.pk }}' id='like-btn' class="like-heart">
+                                    {% csrf_token %}
+                                    <button style='background-color:transparent; border:none;' class='review-detail-like-btn' type='submit'>
+                                        {% if request.user in review.like_users.all %}
+                                        <i style='color:red' class="bi bi-heart-fill"></i>
+                                        <span id='review-like-user-cnt'>{{ review.like_users.count }}개</span>
+                                        {% else %}
+                                        <i style='color:red' class="bi bi-heart"></i>
+                                        <span id='review-like-user-cnt'>{{ review.like_users.count }}개</span>
+                                        {% endif %}
+                                    </button>
+                                </form>
+                            {% endif %}
+                            <p> 댓글 {{ review.comment_set.count }} 개 </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}    
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <h3> {{ user.username }}님이 좋아하는 글 </h3>
+        <div class="row gy-3">
+            {% for review in user.like_reviews.all %}
+            <div class="col-6 col-sm-3">
+                <!--작성된 리뷰에 이미지가 있다면 해당 이미지 파일 출력-->
+                <div class="card" style="margin:1px;">
+                    {% if review.image %}
+                    <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.image.url }}" alt="{{ review.image }}" class="card-img-top" width="300" height="300" ></a>
+                <!--더미이미지-->
+                    {% else %}
+                    <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.item.image_url }}" class="card-img-top" width="300" height="300"></a>
+                    {% endif %}
+                    
+                    <div class="card-body">
+                        <p class="card-text"><strong class="me-2">{{ review.title }}</strong><small>{{ review.created_at|naturaltime }} </small></p>
+                        <p class="card-text">{{ review.content|truncatechars:10 }}</p>
+                        <!-- 좋아요 -->
+                        <div class="d-flex">
+                            {% if request.user.is_authenticated %}
+                                <form data-review-id='{{ review.pk }}' id='like-btn' class="like-heart">
+                                    {% csrf_token %}
+                                    <button style='background-color:transparent; border:none;' class='review-detail-like-btn' type='submit'>
+                                        {% if request.user in review.like_users.all %}
+                                        <i style='color:red' class="bi bi-heart-fill"></i>
+                                        <span id='review-like-user-cnt'>{{ review.like_users.count }}개</span>
+                                        {% else %}
+                                        <i style='color:red' class="bi bi-heart"></i>
+                                        <span id='review-like-user-cnt'>{{ review.like_users.count }}개</span>
+                                        {% endif %}
+                                    </button>
+                                </form>
+                            {% endif %}
+                            <p> 댓글 {{ review.comment_set.count }} 개 </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         {% endfor %}    
@@ -96,44 +145,14 @@
     </div>
 
 
-    <div class="container">
-        <h3> {{ user.username }}님이 좋아하는 글 </h3>
-    <div class="row">
-        {% for review in user.like_reviews.all %}
-            <div class="col-6 col-sm-3">
-                {% if review.image %}
-                    <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.image.url }}" alt="{{ review.image }}" class="img-thumbnail" ></a>
-                {% else %}
-                    <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.item.image_url }}" class="img-thumbnail"></a>
-                {% endif %}
-                <div class="d-flex">
-                {% if request.user.is_authenticated %}
-                <form data-review-id='{{ review.pk }}' id='like-btn' class="like-heart">
-                    {% csrf_token %}
-                    <button style='background-color:transparent; border:none;' class='review-detail-like-btn' type='submit'>
-                        {% if request.user in review.like_users.all %}
-                        <i style='color:red' class="bi bi-heart-fill"></i>
-                        <span id='review-like-user-cnt'>{{ review.like_users.count }}개</span>
-                        {% else %}
-                        <i style='color:red' class="bi bi-heart"></i>
-                        <span id='review-like-user-cnt'>{{ review.like_users.count }}개</span>
-                        {% endif %}
-                    </button>
-                </form>
-                {% endif %}
-                <p> 댓글 {{ review.comment_set.count }} 개 </p>
-            </div>
-            </div>
-        {% endfor %}
-        </div>
-    </div>
-
-    <div class='container'>
+    <div class='container mt-4'>
         <h3>{{ user.username }}님이 작성한 댓글</h3>
         {% for comment in user.comment_set.all %}
-        <div class="card border mb-3 mx-auto w-100" style="height:110px;">
-            <div class="card-header">
-                <strong class="me-auto">{{user.username}}</strong>
+        <div class="card border mb-3 mx-auto w-100" style="height:100px;">
+            <div class="card-header d-flex justify-content-between">
+                <div class="d-flex justify-content-between">
+                <p class="card-text"><strong>{{ comment.review.title }} </strong>({{ comment.review.item.title }})</p>
+                </div>
                 <small class="text-muted">{{ comment.created_at|naturaltime }}</small>
             </div>
             <div class="card-body">
