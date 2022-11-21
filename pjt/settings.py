@@ -176,6 +176,7 @@ AUTH_USER_MODEL = "accounts.User"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
+    BASE_DIR / "items",
 ]
 
 # MEDIA_ROOT = BASE_DIR / "media"
