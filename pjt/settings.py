@@ -66,7 +66,7 @@ else:
     )
 
 ALLOWED_HOSTS = [
-    "Jchipbean-env.eba-wbdf3m8u.ap-northeast-2.elasticbeanstalk.com",
+    "jchipbean-env.eba-wbdf3m8u.ap-northeast-2.elasticbeanstalk.com",
     "127.0.0.1",
     "localhost",
 ]
