@@ -2,15 +2,15 @@
 {% extends 'base.html' %}
 {% block body %}
 <!-- 상품 카테고리 -->
-<div class="d-flex justify-content-center align-itmes-center fs-5 text-muted fw-light bg-light" style="padding-top:15px">
-    <p class="ms-5"><a href="" class="text-decoration-none text-dark">NEW</a></p>
-    <p class="ms-5"><a href="" class="text-decoration-none text-dark">원두</a></p>
-    <p class="ms-5"><a href="" class="text-decoration-none text-dark">드립백</a></p>
-    <p class="ms-5"><a href="" class="text-decoration-none text-dark">콜드브루</a></p>
-    <p class="ms-5"><a href="" class="text-decoration-none text-dark">캡슐커피</a></p>
-    <p class="ms-5"><a href="" class="text-decoration-none text-dark">선물세트</a></p>
-    <p class="ms-5"><a href="" class="text-decoration-none text-dark">커피용품</a></p>
-    <p class="ms-5"><a href="" class="text-decoration-none text-dark">클래스/워크샵</a></p>
+<div id="item-category" class="fs-5">
+    <p><a href="" class="text-decoration-none text-dark">NEW</a></p>
+    <p><a href="" class="text-decoration-none text-dark">원두</a></p>
+    <p><a href="" class="text-decoration-none text-dark">드립백</a></p>
+    <p><a href="" class="text-decoration-none text-dark">콜드브루</a></p>
+    <p><a href="" class="text-decoration-none text-dark">캡슐커피</a></p>
+    <p><a href="" class="text-decoration-none text-dark">선물세트</a></p>
+    <p><a href="" class="text-decoration-none text-dark">커피용품</a></p>
+    <p><a href="" class="text-decoration-none text-dark">클래스/워크샵</a></p>
 </div>
 
 <!-- 상품 목록 -->
@@ -18,11 +18,11 @@
     {% for i in page_obj %}
     <a href="{% url 'items:detail' i.pk %}" class='text-dark text-decoration-none'>
     <div class="col">   
-        <div class="card border border-0 p-3">
+        <div id='items' class="card border border-0 p-3">
             <img src={{i.image_url}} alt={{i.title}}>
             <div class="card-body">
                 <h5 class="card-title fw-semibold text-center">{{i.title}}</h5>
-                <div class="card-text text-center">상품영문명칭</div>
+                <!-- <div class="card-text text-center">상품영문명칭</div> -->
             </div>
         </div>
     </div>
@@ -30,11 +30,11 @@
     {% endfor %}
 </div>
 
-<ul class="pagination my-5 d-flex justify-content-center p-5">
-    <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
-    <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
-    <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
-    <li class="page-item"><a class="page-link" href="?page=4">4</a></li>
+<ul id="pagination" class="d-flex my-5 d-flex justify-content-center p-5">
+    <li class="mx-2 rounded"><a class="border border-0 text-muted" href="?page=1">1</a></li>
+    <li class="mx-2 rounded"><a class="border border-0 text-muted" href="?page=2">2</a></li>
+    <li class="mx-2 rounded"><a class="border border-0 text-muted" href="?page=3">3</a></li>
+    <li class="mx-2 rounded"><a class="border border-0 text-muted" href="?page=4">4</a></li>
 </ul>
 
 {% endblock %}

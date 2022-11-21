@@ -1,7 +1,5 @@
 from django.db import models
 from django.conf import settings
-from imagekit.models import ImageSpecField, ProcessedImageField
-from imagekit.processors import ResizeToFill
 
 
 class Item(models.Model):
@@ -13,28 +11,13 @@ class Item(models.Model):
 # Item detail 모델 추가
 
 
-class FactSheet(models.Model):
-    fieldname = models.TextField()
-    content = models.TextField()
-
-
-class AboutThisCoffee(models.Model):
-    title = models.TextField()
-    content = models.TextField()
-
-
-class MainImageUrl(models.Model):
-    urls = models.TextField()
-
-
 class ItemDetail(models.Model):
-    fact_sheet = models.ForeignKey(FactSheet, on_delete=models.CASCADE)
-    about_this_coffee = models.ForeignKey(AboutThisCoffee, on_delete=models.CASCADE)
     header_title = models.TextField()
     header_image = models.TextField()
-    main_images_url = models.ForeignKey(MainImageUrl, on_delete=models.CASCADE)
-    main_text_title = models.TextField()
-    main_text_content = models.TextField()
+    # 다음 필드들은 사용하지 않음
+    # main_images_url01 = models.TextField()
+    # main_images_url02 = models.TextField()
+    # main_images_url03 = models.TextField()
 
 
 # accounts에 ForeiginKey로 연결
@@ -43,3 +26,13 @@ class ItemPicked(models.Model):
     smashed = models.TextField()
     volume = models.TextField()
     amount = models.IntegerField()
+
+
+class FactSheet(models.Model):
+    fieldname = models.TextField()
+    content = models.TextField()
+
+
+class AboutThisCoffee(models.Model):
+    title = models.TextField()
+    content = models.TextField()

@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
-<header class="d-flex justify-content-between align-items-center" style="height:800px; margin: 0px 300px 0px 300px">
-    <form style="width:470px" id='buy/pick-form'action="{% url 'items:picking' %}" method="POST">
+<header class="row" style="height:800px; margin: 0px 300px 0px 300px">
+    <form class="col-6" style="width:470px; padding-top: 250px;" id='buy/pick-form' action="{% url 'items:picking' %}" method="POST">
         {% csrf_token %}
-        <h1 class="fw-bold mb-5">상품명</h1>
+        <h1 class="fw-bold mb-5">{{item_detail.header_title}}</h1>
         <label class='form-label' for="">용량</label>
         <select class='form-select mb-3' name="volume" form="buy/pick-form">
             <option selected>= 용량 선택 =</option>
             <option value="200">200</option>
         </select>
         <label class='form-label' for="">분쇄도</label>
-        <select class='form-select mb-2' name="smashed" form="buy/pick-form">
+        <select class='form-select mb-3' name="smashed" form="buy/pick-form">
             <option selected>= 분쇄도 선택 : 가격 =</option>
             <option value="홀빈(갈지않음)">홀빈(갈지않음)</option>
             <option value="핸드드립/커피메이커">핸드드립/커피메이커</option>
@@ -21,20 +21,20 @@
             <option value="에스프레소머신">에스프레소머신</option>
             <option value="콜드브루/더치">콜드브루/더치</option>
         </select>
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-end mb-2">
             <div class="mb-0 me-2 pt-2 align-middle">수량</div>
-            <input type="text" name="amount" class="form-control" style="width:45px">
+            <input type="text" name="amount" class="form-control border border-grey" style="width:45px">
         </div>
         <div class="d-flex justify-content-between">
-            <button id="buy-button" type="button" class="btn btn-dark rounded-0"><a href="">구매하기</a></button>
+            <button id="buy-button" type="button" class="btn btn-dark rounded-0"><a class="text-decoration-none text-white" href="">구매하기</a></button>
             <!-- 버튼을 누르면 페이지의 item_pk 값이 전송된다. -->
             <button id="pick-button" type="submit" class="btn btn-outline-dark rounded-0" name="item_picked" value="{{item_pk}}">장바구니</button>
             <!-- 버튼을 누르면 장바구니에 담겼다는 popover창이 뜬다 -->
         </div>
     </form>
     <!-- header 우측 -->
-    <div>
-        <img src="https://dummyimage.com/800x800/8a8a8a/fff" alt="상품이미지">
+    <div class="col-6" style="margin-left:250px">
+        <img src={{item_detail.header_image}} alt="상품이미지">
     </div>
 
 </header>
@@ -72,15 +72,33 @@
     </div>
 </div> -->
 
-<main style='margin: 0px 300px 0px 300px;'>
-    <div class="d-flex bg-light align-items-center mt-5" >
+<main class='mt-5 pt-5' style='margin: 0px 300px 0px 300px;'>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+        <!-- 다른 모든 상품들 링크 carousel로 바꾸기 : 3개씩 -->
+        {% for i in items_info %}
+          <div class="carousel-item active">
+            <img src={{i.image_url}} class="d-block w-100" alt="...">
+          </div>
+        {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    <!-- <div class="d-flex bg-light align-items-center mt-5" >
         <img src="https://dummyimage.com/800x1200/8a8a8a/fff"alt="image">
         <div class="ms-5">
             <h5>title </h5>
             <p>content </p>
         </div>
-    </div>
-    <div class="d-flex bg-light align-items-center mt-5" >
+    </div> -->
+    <!-- <div class="d-flex bg-light align-items-center mt-5" >
         <img src="https://dummyimage.com/800x1200/8a8a8a/fff" alt="image">
         <div class="ms-5">
             <h5>title </h5>
@@ -93,11 +111,12 @@
             <h5>title </h5>
             <p>content </p>
         </div>
-    </div>
+    </div> -->
     <div class="p-5 m-5">
         <div class="my-5" style="height:400px">
             <h1 class="mb-3">SHIPPING & DELIVERY</h1>
             <div class="mt-5">
+                <!-- dropdown 추가 -->
                 <div class="p-4 bg-light fw-bold">배송안내</div>
                 <div class="p-4 bg-light fw-bold">교환/환불 안내</div>
                 <div class="p-4 bg-light fw-bold">카카오톡 문의</div>
@@ -105,17 +124,42 @@
         </div>
         <div class="my-5">
             <h1>REVIEW</h1>
-            <div class="bg-light d-flex align-items-center justify-content-center" style="width:1100px;height:300px">review html</div>
+            <div class="d-flex align-items-start justify-content-center" style="height:300px">
+                <table class="table table-hover text-center">
+                    <thead>
+                      <tr>
+                        <th style="width:5%"scope="col">번호</th>
+                        <th scope="col">제목</th>
+                        <th style="width:15%" scope="col">작성자</th>
+                        <th style="width:25%"scope="col">작성일</th>
+                      </tr>
+                    </thead>
+                    <tbody class="bg-light">
+                    {% for i in review %}
+                      <tr>
+                        <th class="py-3" scope="row">i.pk</th>
+                        <hr>
+                        <td class="py-3">i.title</td>
+                        <hr>
+                        <td class="py-3">i.user.name</td>
+                        <hr>
+                        <td class="py-3">i.created_at </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                <p>{{i.title}}</p>
+            </div>
         </div>
     </div>
-    <div class="mt-5 p-5 bg-light">
+    <!-- <div class="mt-5 p-5 bg-light">
         <h1 class="pt-5">RECOMMEND</h1>
         <div class="my-5 p-5 d-flex justify-content-center bg-secondary" style="width:1100 px;height:700px;">
             <img src="" alt="">
             <img src="" alt="">
             <img src="" alt="">
         </div>
-    </div>
+    </div> -->
 </main>
 <footer id='detail-footer' class='d-flex align-items-center bg-light text-white'>
     <div style="margin-left: 200px;">
