@@ -68,15 +68,15 @@
                 <!--작성된 리뷰에 이미지가 있다면 해당 이미지 파일 출력-->
                 <div class="card" style="margin:1px;">
                     {% if review.image %}
-                    <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.image.url }}" alt="{{ review.image }}" class="card-img-top" width="300" height="300" ></a>
+                    <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.image.url }}" alt="{{ review.image }}" class="card-img-top"></a>
                 <!--더미이미지-->
                     {% else %}
-                    <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.item.image_url }}" class="card-img-top" width="300" height="300"></a>
+                    <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.item.image_url }}" class="card-img-top"></a>
                     {% endif %}
                     
                     <div class="card-body">
-                        <p class="card-text"><strong class="me-2">{{ review.title }}</strong><small>{{ review.created_at|naturaltime }} </small></p>
-                        <p class="card-text">{{ review.content|truncatechars:10 }}</p>
+                        <p class="card-text"><strong class="text-break me-2">{{ review.title|truncatechars:5 }}</strong><small>{{ review.created_at|naturaltime }} </small></p>
+                        <p class="card-text">{{ review.content|truncatechars:5 }}</p>
                         <!-- 좋아요 -->
                         <div class="d-flex">
                             {% if request.user.is_authenticated %}
@@ -85,15 +85,15 @@
                                     <button style='background-color:transparent; border:none;' class='review-detail-like-btn' type='submit'>
                                         {% if request.user in review.like_users.all %}
                                         <i style='color:red' class="bi bi-heart-fill"></i>
-                                        <span id='review-like-user-cnt'>{{ review.like_users.count }}개</span>
+                                        <span id='review-like-user-cnt'>{{ review.like_users.count }}개 </span>
                                         {% else %}
                                         <i style='color:red' class="bi bi-heart"></i>
-                                        <span id='review-like-user-cnt'>{{ review.like_users.count }}개</span>
+                                        <span id='review-like-user-cnt'>{{ review.like_users.count }}개 </span>
                                         {% endif %}
                                     </button>
                                 </form>
                             {% endif %}
-                            <p> 댓글 {{ review.comment_set.count }} 개 </p>
+                            <p class="ms-1"> 댓글 {{ review.comment_set.count }} 개 </p>
                         </div>
                     </div>
                 </div>
@@ -110,14 +110,14 @@
                 <!--작성된 리뷰에 이미지가 있다면 해당 이미지 파일 출력-->
                 <div class="card" style="margin:1px;">
                     {% if review.image %}
-                    <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.image.url }}" alt="{{ review.image }}" class="card-img-top" width="300" height="300" ></a>
+                    <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.image.url }}" alt="{{ review.image }}" class="card-img-top"></a>
                 <!--더미이미지-->
                     {% else %}
-                    <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.item.image_url }}" class="card-img-top" width="300" height="300"></a>
+                    <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.item.image_url }}" class="card-img-top"></a>
                     {% endif %}
                     
                     <div class="card-body">
-                        <p class="card-text"><strong class="me-2">{{ review.title }}</strong><small>{{ review.created_at|naturaltime }} </small></p>
+                        <p class="card-text"><strong class="me-2">{{ review.title|truncatechars:5 }}</strong><small>{{ review.created_at|naturaltime }} </small></p>
                         <p class="card-text">{{ review.content|truncatechars:10 }}</p>
                         <!-- 좋아요 -->
                         <div class="d-flex">
@@ -135,7 +135,7 @@
                                     </button>
                                 </form>
                             {% endif %}
-                            <p> 댓글 {{ review.comment_set.count }} 개 </p>
+                            <p class="ms-1"> 댓글 {{ review.comment_set.count }} 개 </p>
                         </div>
                     </div>
                 </div>
