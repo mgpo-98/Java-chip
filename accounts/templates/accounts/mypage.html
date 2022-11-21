@@ -66,7 +66,7 @@
         {% for review in user.review_set.all %}
             <div class="col-6 col-sm-3">
                 <!--작성된 리뷰에 이미지가 있다면 해당 이미지 파일 출력-->
-                <div class="card" style="margin:1px;">
+                <div class="card" style="margin:1px;height:380px;">
                     {% if review.image %}
                     <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.image.url }}" alt="{{ review.image }}" class="card-img-top"></a>
                 <!--더미이미지-->
@@ -108,7 +108,7 @@
             {% for review in user.like_reviews.all %}
             <div class="col-6 col-sm-3">
                 <!--작성된 리뷰에 이미지가 있다면 해당 이미지 파일 출력-->
-                <div class="card" style="margin:1px;">
+                <div class="card" style="margin:1px;height:380px;">
                     {% if review.image %}
                     <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.image.url }}" alt="{{ review.image }}" class="card-img-top"></a>
                 <!--더미이미지-->
