@@ -6,7 +6,17 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link rel="icon" href="https://templates.pingendo.com/assets/Pingendo_favicon.ico">
 {% endblock css %}
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap" rel="stylesheet">
+  <style>
+      #review-content{
+      font-family :'Dongle';
+      font-size: xx-large;}
 
+  </style>
+</head>
 
 <h1> 인덱스 페이지 </h1>
 
@@ -108,7 +118,7 @@
               {% comment %} 리뷰 내용 {% endcomment %}
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                  <p class="card-text" >
+                  <p id="review-content" style="font-family: 'Dongle';" class="card-text" >
                     {{ review.content|truncatechars:50 }}</p>
                     
                   </li>
