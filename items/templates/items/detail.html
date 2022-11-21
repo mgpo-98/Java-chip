@@ -143,6 +143,7 @@
         <div class="my-5">
             <h1>REVIEW</h1>
             <div class="d-flex align-items-start justify-content-center" style="height:300px">
+                
                 <table class="table table-hover text-center">
                     <thead>
                       <tr>
@@ -154,22 +155,22 @@
                     </thead>
                     <tbody class="bg-light">
                     {% for i in review %}
-                      <tr>
-                        <th class="py-3" scope="row">{{i.pk}}</th>
-                        <hr>
-                        <td class="py-3">{{i.title}}</td>
-                        <hr>
-                        <td class="py-3">{{i.user.username}}</td>
-                        <hr>
-                        <td class="py-3">{{i.created_at}}</td>
-                    </tr>
-                    {% endfor %}
+                        <tr>
+                            <th class="py-3" scope="row">{{i.pk}}</th>
+                            <hr>
+                            <td class="py-3"><a href="{% url 'reviews:detail' i.pk %}" class='text-decoration-none ' style='color:black '>{{i.title}}</a></td>
+                            <hr>
+                            <td class="py-3"><a href="{% url 'accounts:mypage' i.user.pk %}" class='text-decoration-none ' style='color:black '>{{i.user.username}}</a></td>
+                            <hr>
+                            <td class="py-3">{{i.created_at}}</td>
+                        </tr>
+                        {% endfor %}
                     </tbody>
                   </table>
                 <p>{{i.title}}</p>
             </div>
         </div>
-    </div>
+        <a href="{% url 'reviews:create' item_pk  %}" class='text-decoration-none ' style='color:black '><i class="bi bi-pencil">리뷰 작성</i></a>
     <!-- <div class="mt-5 p-5 bg-light">
         <h1 class="pt-5">RECOMMEND</h1>
         <div class="my-5 p-5 d-flex justify-content-center bg-secondary" style="width:1100 px;height:700px;">
