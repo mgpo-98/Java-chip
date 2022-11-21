@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block body %}
 <header class="row gx-5" style="height:800px; margin: 0px 300px 0px 300px">
     <form class="col-6" style="width:470px; padding-top: 250px;" id='buy/pick-form' action="{% url 'items:picking' %}" method="POST">
@@ -142,7 +143,12 @@
         <!-- review -->
         <div class="mt-5">
             <h1>REVIEW</h1>
+
+            <a href="{% url 'reviews:create' item_pk  %}" class='text-decoration-none' style='color:black '><i class="bi bi-pencil d-flex justify-content-end">리뷰 작성</i></a>
+            <div class="d-flex align-items-start justify-content-center" style="height:300px">
+            
             <div class="d-flex align-items-start justify-content-center">
+
                 <table class="table table-hover text-center">
                     <thead>
                       <tr>
@@ -161,7 +167,7 @@
                             <hr>
                             <td class="py-3"><a href="{% url 'accounts:mypage' i.user.pk %}" class='text-decoration-none ' style='color:black '>{{i.user.username}}</a></td>
                             <hr>
-                            <td class="py-3">{{i.created_at}}</td>
+                            <td class="py-3">{{i.created_at|naturaltime}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
