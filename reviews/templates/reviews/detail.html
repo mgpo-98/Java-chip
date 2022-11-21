@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% load humanize %}
-
 {% block body %}
 
 {% block css %}
@@ -36,17 +35,9 @@
             <span class="username">
                 <!-- 회원 정보 페이지로 넘어가기 -->
                 <a class='text-decoration-none fw-bolder' style='color:black'
-                    href="{% url 'accounts:profile' review.user.pk %}">
+                    href="{% url 'accounts:mypage' review.user.pk %}">
                     <!-- 만악 회원 프로필 사진이 있으면 -->
-                    {% if user.profile_set.all.count > 0 %}
-                    <img src="{{ review.user.profile_set.all.0.image.url }}"
-                        style='width:25px; height:25px; border-radius:50%'>
-                    {% comment %} 회원가입 후 프로필 페이지에서 별도로 프로필 사진 수정을 하지 않은 경우 {% endcomment %}
-                    {% else %}
-                    <!-- 회원 프로필이 없으면 기본 프로필   -->
-                    <img src="https://t1.daumcdn.net/cfile/tistory/243FE450575F82662D"
-                        style='width:25px; height:25px; border-radius:50%'>
-                    {% endif %}
+                    
                     &nbsp;&nbsp;{{ review.user.username }}
                 </a>
             </span>
@@ -127,9 +118,9 @@
         <!-- 댓글 순서대로 출력 -->
         {% for comment in comments %}
         <div class='py-3'>
-            <div class="align-items-center">
+            <div id="review-content" class="me-3-5 mt-3 text-break align-items-center" style="font-family: 'Dongle';">
                 {{ comment.user.username }} : {{ comment.content }}
-                <p class='d-flex justify-content-end' >{{ comment.created_at|naturaltime }}</p>
+                <p id="review-content" class="d-flex justify-content-end" style="font-family: 'Dongle';" >{{ comment.created_at|naturaltime }}</p>
             </div>
 
             {% comment %} 댓글을 작성한 user가 리뷰를 쓴 유저인 경우 {% endcomment %}

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
-<header class="row" style="height:800px; margin: 0px 300px 0px 300px">
+<header class="row gx-5" style="height:800px; margin: 0px 300px 0px 300px">
     <form class="col-6" style="width:470px; padding-top: 250px;" id='buy/pick-form' action="{% url 'items:picking' %}" method="POST">
         {% csrf_token %}
         <h1 class="fw-bold mb-5">{{item_detail.header_title}}</h1>
@@ -23,7 +23,7 @@
         </select>
         <div class="d-flex justify-content-end mb-2">
             <div class="mb-0 me-2 pt-2 align-middle">수량</div>
-            <input type="text" name="amount" class="form-control border border-grey" style="width:45px">
+            <input type="text" name="amount" class="form-control border border-grey text-center" style="width:45px">
         </div>
         <div class="d-flex justify-content-between">
             <button id="buy-button" type="button" class="btn btn-dark rounded-0"><a class="text-decoration-none text-white" href="">구매하기</a></button>
@@ -33,7 +33,7 @@
         </div>
     </form>
     <!-- header 우측 -->
-    <div class="col-6" style="margin-left:250px">
+    <div class="col-6" style="padding-left: 150px;">
         <img src={{item_detail.header_image}} alt="상품이미지">
     </div>
 
@@ -73,14 +73,31 @@
 </div> -->
 
 <main class='mt-5 pt-5' style='margin: 0px 300px 0px 300px;'>
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleControls" class="carousel slide ms-5 ps-5" data-bs-ride="carousel">
         <div class="carousel-inner">
         <!-- 다른 모든 상품들 링크 carousel로 바꾸기 : 3개씩 -->
-        {% for i in items_info %}
           <div class="carousel-item active">
-            <img src={{i.image_url}} class="d-block w-100" alt="...">
+            <div class="d-flex">
+                <img src={{item_details.1.header_image}} class="d-block" alt="..." style="height: 400px;">
+                <img src={{item_details.2.header_image}} class="d-block" alt="..." style="height: 400px;">
+                <img src={{item_details.12.header_image}} class="d-block" alt="..." style="height: 400px;">
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="d-flex">
+                <img src={{item_details.13.header_image}} class="d-block" alt="..." style="height: 400px;">
+                <img src={{item_details.5.header_image}} class="d-block" alt="..." style="height: 400px;">
+                <img src={{item_details.6.header_image}} class="d-block" alt="..." style="height: 400px;">
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="d-flex">
+                <img src={{item_details.7.header_image}} class="d-block" alt="..." style="height: 400px;">
+                <img src={{item_details.8.header_image}} class="d-block" alt="..." style="height: 400px;">
+                <img src={{item_details.17.header_image}} class="d-block" alt="..." style="height: 400px;">
+            </div>
           </div>
-        {% endfor %}
+        
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -122,9 +139,11 @@
                 <div class="p-4 bg-light fw-bold">카카오톡 문의</div>
             </div>
         </div>
+        <!-- review -->
         <div class="my-5">
             <h1>REVIEW</h1>
             <div class="d-flex align-items-start justify-content-center" style="height:300px">
+                
                 <table class="table table-hover text-center">
                     <thead>
                       <tr>
@@ -136,22 +155,22 @@
                     </thead>
                     <tbody class="bg-light">
                     {% for i in review %}
-                      <tr>
-                        <th class="py-3" scope="row">i.pk</th>
-                        <hr>
-                        <td class="py-3">i.title</td>
-                        <hr>
-                        <td class="py-3">i.user.name</td>
-                        <hr>
-                        <td class="py-3">i.created_at </td>
-                    </tr>
-                    {% endfor %}
+                        <tr>
+                            <th class="py-3" scope="row">{{i.pk}}</th>
+                            <hr>
+                            <td class="py-3"><a href="{% url 'reviews:detail' i.pk %}" class='text-decoration-none ' style='color:black '>{{i.title}}</a></td>
+                            <hr>
+                            <td class="py-3"><a href="{% url 'accounts:mypage' i.user.pk %}" class='text-decoration-none ' style='color:black '>{{i.user.username}}</a></td>
+                            <hr>
+                            <td class="py-3">{{i.created_at}}</td>
+                        </tr>
+                        {% endfor %}
                     </tbody>
                   </table>
                 <p>{{i.title}}</p>
             </div>
         </div>
-    </div>
+        <a href="{% url 'reviews:create' item_pk  %}" class='text-decoration-none ' style='color:black '><i class="bi bi-pencil">리뷰 작성</i></a>
     <!-- <div class="mt-5 p-5 bg-light">
         <h1 class="pt-5">RECOMMEND</h1>
         <div class="my-5 p-5 d-flex justify-content-center bg-secondary" style="width:1100 px;height:700px;">

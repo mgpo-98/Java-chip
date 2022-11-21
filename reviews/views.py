@@ -9,7 +9,7 @@ from reviews.forms import ReviewForm, CommentForm
 from django.core.paginator import Paginator
 from django.db.models import Count
 # Create your views here.
-@login_required
+
 def index(request):
     sort = request.GET.get('sort','') #url의 쿼리스트링을 가져온다. 없는 경우 공백을 리턴한다
     if sort == 'created_at':

@@ -12,7 +12,7 @@ def index(request):
     item = Item.objects.all()
     # csv 파일에서 데이터를 불러온다
     if len(item) == 0:
-        items_csv = open("items/items.csv", encoding='UTF-8')
+        items_csv = open("items/items.csv", encoding="UTF-8")
         items_reader = csv.reader(items_csv)
         bulk_list = []
         for i in items_reader:
@@ -40,7 +40,7 @@ def detail(request, item_pk):
     # csv 파일에서 데이터를 불러온다
     item_detail_all = ItemDetail.objects.all()
     if len(item_detail_all) == 0:
-        item_detail_csv = open("items/item_detail.csv",encoding='UTF-8')
+        item_detail_csv = open("items/item_detail.csv", encoding="UTF-8")
         item_detail_reader = csv.reader(item_detail_csv)
         bulk_list = []
         for i in item_detail_reader:
@@ -51,14 +51,14 @@ def detail(request, item_pk):
                 ),
             )
         ItemDetail.objects.bulk_create(bulk_list)
-    review = Review.objects.filter(pk=item_pk)
+    review = Review.objects.filter(item_id=item_pk)
     item_detail = ItemDetail.objects.get(pk=item_pk)
-    item_info = Item.objects.get(pk=item_pk)
+    item_details = ItemDetail.objects.all()
     context = {
         "item_detail": item_detail,
         "item_pk": item_pk,
         "review": review,
-        "item_info": item_info,
+        "item_details": item_details,
     }
     return render(request, "items/detail.html", context)
 

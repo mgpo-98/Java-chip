@@ -40,6 +40,8 @@ if DEBUG:
             "NAME": BASE_DIR / "db.sqlite3",
         }
     }
+    # MEDIA_URL = "/media/"
+    # MEDIA_ROOT = BASE_DIR / "media"
 else:
     DATABASES = {
         "default": {
@@ -51,9 +53,20 @@ else:
             "PORT": "5432",
         }
     }
+    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+
+    AWS_REGION = "ap-northeast-2"
+    AWS_S3_CUSTOM_DOMAIN = "%s.s3.%s.amazonaws.com" % (
+        AWS_STORAGE_BUCKET_NAME,
+        AWS_REGION,
+    )
 
 ALLOWED_HOSTS = [
-    "Jchipbean-env.eba-wbdf3m8u.ap-northeast-2.elasticbeanstalk.com",
+    "jchipbean-env.eba-wbdf3m8u.ap-northeast-2.elasticbeanstalk.com",
     "127.0.0.1",
     "localhost",
 ]
@@ -167,6 +180,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = "/static/"
+STATIC_ROOT = "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -184,14 +198,3 @@ STATICFILES_DIRS = [
 # MEDIA_URL = "/media/"
 
 # 아래 코드 추가
-DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
-
-AWS_REGION = "ap-northeast-2"
-AWS_S3_CUSTOM_DOMAIN = "%s.s3.%s.amazonaws.com" % (
-    AWS_STORAGE_BUCKET_NAME,
-    AWS_REGION,
-)
