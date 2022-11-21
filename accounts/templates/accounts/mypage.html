@@ -103,7 +103,7 @@
                 {% if review.image %}
                     <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.image.url }}" alt="{{ review.image }}" class="img-thumbnail" ></a>
                 {% else %}
-                    <a href="{% url 'reviews:detail' review.pk %}"><img src="https://dummyimage.com/100/000/fff" class="img-thumbnail"></a>
+                    <a href="{% url 'reviews:detail' review.pk %}"><img src="{{ review.item.image_url }}" class="img-thumbnail"></a>
                 {% endif %}
                 <div class="d-flex">
                 {% if request.user.is_authenticated %}
