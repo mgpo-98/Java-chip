@@ -5,6 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
+from django.http import JsonResponse
 
 
 
@@ -34,7 +35,7 @@ def login(request):
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect(request.GET.get("next") or "accounts:index")
+            return redirect(request.GET.get("next") or "/")
     else:
         form = AuthenticationForm()
     context = {
@@ -44,7 +45,7 @@ def login(request):
 
 def logout(request):
     auth_logout(request)
-    return redirect("accounts:index")
+    return redirect("/")
 
 @login_required
 def update(request):
@@ -98,12 +99,22 @@ def profile(request, pk):
 
 @login_required
 def follow(request, pk):
-    user = get_user_model().objects.get(pk=pk)
-    if request.user == user:
-        return redirect('accounts:mypage',pk)
-
-    if request.user in user.followers.all():
-        user.followers.remove(request.user)
-    else:
-        user.followers.add(request.user)
-    return redirect('accounts:mypage',pk)
+    if request.user.is_authenticated:
+            User = get_user_model()
+            me = request.user
+            you = User.objects.get(pk=pk)
+            if me != you:
+                if you.followers.filter(pk=me.pk).exists():
+                    you.followers.remove(me)
+                    is_followed =False
+                else :
+                    you.followers.add(me)
+                    is_followed = True
+                context ={
+                    'is_followed' : is_followed,
+                    'followers_count' :  you.followers.count(),
+                    'followings_count' : you.followings.count(),
+                }
+                return JsonResponse(context)
+            return redirect('accounts:mypage', you.username)
+    return redirect('accounts:login')
