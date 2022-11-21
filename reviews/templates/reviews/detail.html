@@ -16,11 +16,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap" rel="stylesheet">
     <style>
-        @font-face{
+        #review-content{
         font-family :'Dongle';
-        src: url("https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap") format('woff');
-        font-weight: normal;
-        font-style: normal;}
+        font-size: xx-large;}
 
     </style>
 </head>
@@ -39,15 +37,7 @@
                 <a class='text-decoration-none fw-bolder' style='color:black'
                     href="{% url 'accounts:profile' review.user.pk %}">
                     <!-- 만악 회원 프로필 사진이 있으면 -->
-                    {% if user.profile_set.all.count > 0 %}
-                    <img src="{{ review.user.profile_set.all.0.image.url }}"
-                        style='width:25px; height:25px; border-radius:50%'>
-                    {% comment %} 회원가입 후 프로필 페이지에서 별도로 프로필 사진 수정을 하지 않은 경우 {% endcomment %}
-                    {% else %}
-                    <!-- 회원 프로필이 없으면 기본 프로필   -->
-                    <img src="https://t1.daumcdn.net/cfile/tistory/243FE450575F82662D"
-                        style='width:25px; height:25px; border-radius:50%'>
-                    {% endif %}
+                    
                     &nbsp;&nbsp;{{ review.user.username }}
                 </a>
             </span>
@@ -74,7 +64,7 @@
         
         {% endif %}
         <!-- 리뷰 내용 -->
-        <p class="me-3-5 mt-3 text-break" style='background-color:#D3D3D3; border-radius: 5%; font-family: 'Dongle', sans-serif; '>{{ review.content }}</p>
+        <p id="review-content" class="me-3-5 mt-3 text-break" style="font-family: 'Dongle';">{{ review.content }}</p>
 
 
         <!-- 좋아요 버튼 -->
