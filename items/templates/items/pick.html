@@ -33,7 +33,7 @@
             <tbody>
                 {% for i in picked %}
                 <tr style="padding: 30px 0px 30px 0px;">
-                        <th class="text-center align-middle"><input type="checkbox" name="checked_item" value="{{i}}" form="pick-delete-form"></th>
+                        <th class="text-center align-middle"><input type="checkbox" name="checked_item" value="{{i.pk}}" form="pick-delete-form"></th>
                     <td class="pt-4 d-flex">
                         <img src={{i.picked_item.image_url}} alt="item_image" style="height: 90px;">
                         <div id="picked_item_info">
@@ -123,7 +123,6 @@
             <div>
                 <button id='order-price'class='btn round fw-semibold' type="submit" form="">주문 금액 보기</button>
                 <button class='btn round fw-semibold' type="submit" form="pick-delete-form">선택 상품 삭제</button>
-                fetch07
             </div>
         </div>
         </form>
@@ -133,7 +132,7 @@
             </div> -->
         </div>
     </div>
-    <script>
+    <!-- <script>
         const orderPriceShow = document.getElementById('order-price')
         function sum_(){
             const price = document.getElementById('price')
@@ -141,6 +140,6 @@
             
         }
         orderPriceShow.addEventListener('click',)
-    </script>
+    </script> -->
 
 {% endblock %}
