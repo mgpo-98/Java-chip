@@ -70,20 +70,40 @@
         <!-- 좋아요 버튼 -->
 
         {% if request.user.is_authenticated %}
-
-        <form data-review-id='{{ review.pk }}' id='like-btn' class="like-heart">
-            {% csrf_token %}
-            <button style='background-color:transparent; border:none;' class='review-detail-like-btn' type='submit'>
-                {% if request.user in review.like_users.all %}
-                <i style='color:red' class="bi bi-heart-fill"></i>
-                <span id='review-like-user-cnt'>{{ review.like_users.count }}</span>
-                {% else %}
-                <i style='color:red' class="bi bi-heart"></i>
-                <span id='review-like-user-cnt'>{{ review.like_users.count }}</span>
-                {% endif %}
-            </button>
-        </form>
-
+        <div class="d-flex justify-content-between">
+            <form data-review-id='{{ review.pk }}' id='like-btn' class="like-heart">
+                {% csrf_token %}
+                <button style='background-color:transparent; border:none;' class='review-detail-like-btn' type='submit'>
+                    {% if request.user in review.like_users.all %}
+                    <i style='color:red' class="bi bi-heart-fill"></i>
+                    <span id='review-like-user-cnt'>{{ review.like_users.count }}</span>
+                    {% else %}
+                    <i style='color:red' class="bi bi-heart"></i>
+                    <span id='review-like-user-cnt'>{{ review.like_users.count }}</span>
+                    {% endif %}
+                </button>
+            </form>
+            <div class="d-flex justify-content-end">
+                <a href="javascript:sendLinkFacebook()"><i class="bi bi-facebook me-2"></i></a>
+                <a href="javascript:sendLinkTwitter()"><i class="bi bi-twitter"></i></a>
+                <script>
+                        function sendLinkFacebook(){
+            var facebook_share_url = "https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}";
+            window.open(facebook_share_url,
+                        'Share on Facebook',
+                        'scrollbars=no, width=500, height=500');
+            } 
+        
+            function sendLinkTwitter(){
+            var twitter_share_text="{{ post.title }}";
+            var twitter_share_url="{{ request.build_absolute_uri }}";
+            window.open("https://twitter.com/share?text="+twitter_share_text+"&url="+twitter_share_url,
+                        'Share on Twitter',
+                        'scrollbars=no, width=500, height=500');
+            }
+                </script>
+            </div>
+        </div>
         {% endif %}
 
 
@@ -104,6 +124,7 @@
                 <input type="submit" class="btn btn-danger fw-bolder" value="삭제하기">
             </form>
             </p>
+            
         </div>
         {% endif %}
         <!-- 댓글 -->
