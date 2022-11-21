@@ -1,27 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
-<div class="my-5 row" style="margin: 0px 300px 0px 300px;" >
+
+<div class="row" style="margin: 100px 300px 100px 300px;" >
     <div class="col-2">
         <h1 class="fw-bold">장바구니</h1>
-        <ul class="list-group">
-            <li class="list-group-item border border-0 px-0">
-                <span class="fw-bold">01</span> 장바구니
+        <ul class="list-group mt-4">
+            <li class="list-group-item border border-0 px-0 fs-5">
+                <span class="fw-bold me-2">01</span> 장바구니
             </li>
-            <li class="list-group-item border border-0 px-0">
-                <span class="fw-bold">02</span> 주문서작성/결제
+            <li class="list-group-item border border-0 px-0 fs-5">
+                <span class="fw-bold me-2">02</span> 주문서작성/결제
             </li>
-            <li class="list-group-item border border-0 px-0">
-                <span class="fw-bold">03</span> 주문완료
+            <li class="list-group-item border border-0 px-0 fs-5">
+                <span class="fw-bold me-2">03</span> 주문완료
             </li>
         </ul>
     </div>
     <div class="col-10" style="padding-left: 150px;">
         <h3 class="fw-bold">장바구니</h3>
-        <table class="table">
+        <table id="pick-table" class="table mt-4">
             <thead>
                 <tr>
-                    <th scope="col" class="text-center"><input type="checkbox" value="{{picked}}"></th>
+                    <th scope="col" class="text-center"><input type="checkbox" form="pick_item_pick-form"></th>
                     <th scope="col" class="text-center">상품명/옵션</th>
                     <th scope="col" class="text-center">수량</th>
                     <th scope="col" class="text-center">상품금액</th>
@@ -32,13 +33,13 @@
             <tbody>
                 {% for i in picked %}
                 <tr style="padding: 30px 0px 30px 0px;">
-                    <th class="text-center align-middle"><input type="checkbox" value="{{i.picked_item}}"></th>
+                        <th class="text-center align-middle"><input type="checkbox" name="checked_item" value="{{i}}" form="pick_item_pick-form"></th>
                     <td class="pt-4 d-flex">
                         <img src={{i.picked_item.image_url}} alt="item_image" style="height: 90px;">
-                        <div>
-                            <p class="fw-bold mb-2" style=" padding-left:40px;">{{i.picked_item.title}}</p>
-                            <p class="mb-0 text-muted" style="font-size: 15px; padding-left:40px;">용량 <span class="fw-semibold"></span></p>
-                            <p class="mb-0 text-muted" style="font-size: 15px; padding-left:40px;">분쇄도 <sapn class="fw-semibold"></span></p>
+                        <div id="picked_item_info">
+                            <p class="fw-bold mb-2" style="padding-left:40px;">{{i.picked_item.title}}</p>
+                            <p class="mb-0 text-muted" style="font-size: 15px; padding-left:40px;">용량 <span class="fw-semibold ms-2">{{i.volume}}</span></p>
+                            <p class="mb-0 text-muted" style="font-size: 15px; padding-left:40px;">분쇄도 <span class="fw-semibold ms-2">{{i.smashed}}</span></p>
                         </div>
                     </td>
                     <td class="text-center py-3 align-middle">
@@ -92,31 +93,38 @@
                 {% endfor %}
             </tbody>
         </table>
-        <div class="bg-light py-5 d-flex justify-content-center">
-            <dl>
-                <dt>주문 금액</dt>
-                <dd class="mt-3">00000원</dd>
+        <div id="pick-deliver" class="bg-light py-4 d-flex justify-content-center align-items-center fs-5">
+            <dl class="p-4 text-center">
+                <dt class="fw-light">주문 금액</dt>
+                <dd class="mt-3 fw-bold">{{picked.0.picked_item.price}}</dd>
             </dl>
-            <span>+</span>
-            <dl>
-                <dt>배송비</dt>
-                <dd class="mt-3">3,000원</dd>
+            <span class="p-4">+</span>
+            <dl class="p-4 text-center">
+                <dt class="fw-light">배송비</dt>
+                <dd class="mt-3 fw-bold">0원</dd>
             </dl>
-            <span>=</span>
-            <dl>
-                <dt>합계</dt>
-                <dd class="mt-3">00000원</dd>
+            <span class="p-4">=</span>
+            <dl class="p-4 text-center">
+                <dt class="fw-light">합계</dt>
+                <dd class="mt-3 fw-bold">{{picked.0.picked_item.price}}</dd>
             </dl>
         </div>
-        <div>
-            <a href="{% url 'items:index' %}">쇼핑계속하기</a>
-            <a href="{% url 'items:delete_picked' %}">선택 상품 삭제</a>
+        <form id='pick_item_pick-form'action="{% url 'items:delete_picked' %}" method='POST'>
+        {% csrf_token %}
+        <div id='pick_action' class="d-flex justify-content-between text-muted fs-6 mt-2">
+            <button class='btn round fw-semibold'><a href="{% url 'items:index' %}">쇼핑계속하기</a></button>
+            <div>
+                <button class='btn round fw-semibold' type="submit" form="">주문 금액 보기</button>
+                <button class='btn round fw-semibold' type="submit">선택 상품 삭제</button>
+            </div>
         </div>
-        <div class="d-flex">
-            <button type="button" class="py-1 px-3">선택상품주문</button>
-            <button type="button" class="py-1 px-3">전체상품주문</button>
+        </form>
+            <!-- <div class="d-flex">
+                <button type="button" class="py-1 px-3">선택상품주문</button>
+                <button type="button" class="py-1 px-3">전체상품주문</button>
+            </div> -->
         </div>
     </div>
-</div>
+
 
 {% endblock %}
