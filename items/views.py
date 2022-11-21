@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Item, ItemDetail, ItemPicked
 from django.core.paginator import Paginator
-from django.db.models import Count
+from django.db.models import Avg, Count, Min, Sum
 from reviews.models import Review
 import csv
 
@@ -78,6 +78,10 @@ def picking(request):
             smashed=item_smashed,
             volume=item_volume,
         )
+        if len(picked_item_list) != 0:
+            picked_item_list.picked_item = picked_items
+            picked_item_list.amount = item_amount
+            picked_item_list.volume = item_volume
         picked_item_list.save()
     return redirect("items:pick")
 
@@ -92,13 +96,13 @@ def pick(request):
         context = {
             "picked": picked,
             "picked_count": picked_count["count"],
-            "delivery_fee": 3000,
         }
         return render(request, "items/pick.html", context)
 
 
 def delete_picked(request):
-    print(request.POST)
+    request.POST.delete()
+
     return redirect("items:pick")
 
 
