@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
+{% load humanize %}
 
 {% block body %}
 
@@ -128,7 +129,7 @@
         <div class='py-3'>
             <div class="align-items-center">
                 {{ comment.user.username }} : {{ comment.content }}
-                <p class='d-flex justify-content-end' >{{ comment.created_at }}</p>
+                <p class='d-flex justify-content-end' >{{ comment.created_at|naturaltime }}</p>
             </div>
 
             {% comment %} 댓글을 작성한 user가 리뷰를 쓴 유저인 경우 {% endcomment %}

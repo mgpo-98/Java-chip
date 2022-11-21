@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% load static %}
+{% load humanize %}
 {% block body %}
 
 
@@ -133,7 +134,7 @@
         <div class="card border mb-3 mx-auto w-100" style="height:110px;">
             <div class="card-header">
                 <strong class="me-auto">{{user.username}}</strong>
-                <small class="text-muted">{{ comment.created_at }}</small>
+                <small class="text-muted">{{ comment.created_at|naturaltime }}</small>
             </div>
             <div class="card-body">
                 <a href="{% url 'reviews:detail' comment.review.pk %}" class='text-decoration-none' style='color:rgb(0, 0, 0)'>
