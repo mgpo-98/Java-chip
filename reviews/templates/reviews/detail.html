@@ -37,15 +37,7 @@
                 <a class='text-decoration-none fw-bolder' style='color:black'
                     href="{% url 'accounts:profile' review.user.pk %}">
                     <!-- 만악 회원 프로필 사진이 있으면 -->
-                    {% if user.profile_set.all.count > 0 %}
-                    <img src="{{ review.user.profile_set.all.0.image.url }}"
-                        style='width:25px; height:25px; border-radius:50%'>
-                    {% comment %} 회원가입 후 프로필 페이지에서 별도로 프로필 사진 수정을 하지 않은 경우 {% endcomment %}
-                    {% else %}
-                    <!-- 회원 프로필이 없으면 기본 프로필   -->
-                    <img src="https://t1.daumcdn.net/cfile/tistory/243FE450575F82662D"
-                        style='width:25px; height:25px; border-radius:50%'>
-                    {% endif %}
+                    
                     &nbsp;&nbsp;{{ review.user.username }}
                 </a>
             </span>
