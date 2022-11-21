@@ -79,6 +79,9 @@
             <div>
               {% if request.user.is_authenticated %}
               <li>
+                <a aria-current="page" href="{% url 'reviews:index' %}"><b>리뷰목록</b></a>
+              </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <li>
                 <a aria-current="page"  href="{% url 'accounts:mypage' request.user.pk %}"><b>{{ request.user }}</b></a>
               </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <li>
@@ -89,11 +92,15 @@
             </li>
               </div>
               {% else %}
+              <li>
+                <a aria-current="page" href="{% url 'reviews:index' %}"><b>리뷰목록</b></a>
+              </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div><li><a href="{% url 'accounts:login' %}"><b>로그인</b></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <li><a href="{% url 'accounts:signup' %}"><b>회원가입</b></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <li><a href="{% url 'items:pick' %}"><img src="https://cdn-icons-gif.flaticon.com/6416/6416388.gif" alt="장바구니" width="30px"></img></a></li>
           </li>
           {% endif %}
+          
         </ul>
       </div>
     </nav>
