@@ -13,10 +13,16 @@
 - 프론트엔드
 - base/index 페이지
 <br>
+
 #### 김태형
 - PPT
 - 백/프론트엔드
--Accounts 기능 구현
+- Items 기능구현
+<br>
+#### 오진수
+-     PPT
+-     백/프론트엔드
+-     Accounts 기능 구현
 <br>
 #### 신현강
 -base/index 페이지
