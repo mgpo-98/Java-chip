@@ -27,6 +27,13 @@
 -백/프론트엔드
 -Reviews 기능 구현
 
+<hr>
+### 기능소개
+<br>
+-     Navar
+![image](https://user-images.githubusercontent.com/60389344/203451829-127e8315-0a8b-460b-9e44-5e79d7933e40.png)
+      - Section션 기능과 오른쪽 장바구니 아이콘 움직임 기능
+
 
       
 
