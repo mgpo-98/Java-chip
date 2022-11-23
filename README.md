@@ -17,7 +17,7 @@
 
 ### 프로젝트 소개
 
-![프로젝트 소개](README.assets/프로젝트 소개1.png)
+![프로젝트 소개](README.assets/프로젝트 소개.PNG)
 
 <hr>
 
@@ -52,16 +52,9 @@
 <hr>
 
 ### 기능소개
-<br>
-
-
 -Navar
 
-![nava](README.assets/nava1.png)
-
-
-
-
+![nava](README.assets/nava.PNG)
 
 ### 프로젝트 후기 
 <hr>
