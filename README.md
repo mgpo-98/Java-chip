@@ -3,7 +3,12 @@
 #### 서비스 이름 : Java-chip
 #### 제작 기간 : 2022-11-09 ~ 2022-11-21
 #### 제작 회원 : 조승윤 오진수 김태형 김민찬 신현강
+#### 서버 주소: http://jchipbean-env.eba-wbdf3m8u.ap-northeast-2.elasticbeanstalk.com/
+
 <hr>
+
+- 팀원
+-   ㅇ
 
 
 
