@@ -78,13 +78,7 @@ def picking(request):
             smashed=item_smashed,
             volume=item_volume,
         )
-        # 장바구니 item update
-        if len(ItemPicked) == 0:
-            ItemPicked.picked_item_id = item_info
-            ItemPicked.amount = item_amount
-            ItemPicked.smashed = item_smashed
-            ItemPicked.volume = item_volume
-            picked_item_list.save()
+        picked_item_list.save()
 
     return redirect("items:pick")
 
