@@ -53,7 +53,7 @@ def update(request):
         form = UpdateForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect("accounts:index")
+            return redirect("/")
     else:
         form = UpdateForm(instance=request.user)
     context = {
