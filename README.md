@@ -10,7 +10,7 @@
 
 #### 🛠️ 기술 스택
 
-![img](README.assets\활용 기술.PNG)
+<img src="https://img.shields.io/badge/GitHub-E34F26?style=flat-square&logo=HTML5&logoColor=181717"/>
 
 
 
@@ -34,9 +34,9 @@
 <br>
 
 #### 오진수
--     PPT
--     백/프론트엔드
--     Accounts 기능 구현
+- PPT
+- 백/프론트엔드
+- Accounts 기능 구현
 <br>
 
 #### 신현강
