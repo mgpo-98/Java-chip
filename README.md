@@ -10,13 +10,13 @@
 
 #### 🛠️ 기술 스택
 
-![img](README.assets\활용 기술.PNG)
+![활용 기술](README.assets/활용 기술1.png)
 
 
 
 ### 프로젝트 소개
 
-![img](README.assets\프로젝트 소개.PNG)
+![프로젝트 소개](README.assets/프로젝트 소개1.png)
 
 <hr>
 
@@ -53,18 +53,12 @@
 ### 기능소개
 <br>
 
-- Navar
+
+-Navar
+![nava](README.assets/nava1.png)
+      - Section션 기능과 오른쪽 장바구니 아이콘 움직임 기능
 
 ![img](README.assets\nava.PNG)
-
-      -  Section션 기능과 오른쪽 장바구니 아이콘 움직임 기능
-
-
-      
-
-
-
-
 
 
 
