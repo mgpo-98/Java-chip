@@ -11,7 +11,6 @@
 
 
 
-<img src="https://img.shields.io/badge/GitHub-E34F26?style=flat-square&logo=HTML5&logoColor=181717"/>
 
 ### 프로젝트 소개
 
@@ -33,9 +32,9 @@
 <br>
 
 #### 오진수
--     PPT
--     백/프론트엔드
--     Accounts 기능 구현
+- PPT
+- 백/프론트엔드
+- Accounts 기능 구현
 <br>
 
 #### 신현강
