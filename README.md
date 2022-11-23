@@ -10,13 +10,13 @@
 
 #### 🛠️ 기술 스택
 
-![img](README.assets\활용 기술.PNG)
+![활용 기술](README.assets/활용 기술.PNG)
 
 
 
 ### 프로젝트 소개
 
-![img](README.assets\프로젝트 소개.PNG)
+![테스트](README.assets/프로젝트 소개.PNG)
 
 <hr>
 
@@ -54,17 +54,11 @@
 <br>
 
 -Navar
-![img](README.assets\nava.PNG)
+![테스트](README.assets/nava.PNG)
       - Section션 기능과 오른쪽 장바구니 아이콘 움직임 기능
 
 
-      
-
-
-
-
-
-
+​      
 
 
 
