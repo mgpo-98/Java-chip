@@ -78,11 +78,12 @@ def picking(request):
             smashed=item_smashed,
             volume=item_volume,
         )
-        if picked_item_list:
-            ItemPicked.picked_item_id = item_info
-            ItemPicked.amount = item_amount
-            ItemPicked.smashed = item_smashed
-            ItemPicked.volume = item_volume
+        # 장바구니 item update
+        picked_item_list_exist = ItemPicked.objects.get(pk=item_info)
+        ItemPicked.picked_item_id = item_info
+        ItemPicked.amount = item_amount
+        ItemPicked.smashed = item_smashed
+        ItemPicked.volume = item_volume
         picked_item_list.save()
 
     return redirect("items:pick")

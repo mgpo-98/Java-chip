@@ -189,13 +189,13 @@
     var sort = getUrlParameter('sort');
     if(sort == 'likes'){
       $('.sort-likes').prop('selected', 'selected')
-    }elif(sort == 'created_at'){
+    }
+    else if(sort == 'created_at'){
       $('.sort-created_at').prop('selected', 'selected')
     }
     else{
       $('.sort-order_at').prop('selected', 'selected')
     }
-
   });
 </script>
 {% endblock body %}

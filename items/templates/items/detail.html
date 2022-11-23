@@ -29,7 +29,12 @@
         <div class="d-flex justify-content-between">
             <button id="buy-button" type="button" class="btn btn-dark rounded-0"><a class="text-decoration-none text-white" href="">구매하기</a></button>
             <!-- 버튼을 누르면 페이지의 item_pk 값이 전송된다. -->
-            <button id="pick-button" type="submit" class="btn btn-outline-dark rounded-0" name="item_picked" value="{{item_pk}}">장바구니</button>
+            <!-- popover 작동 안 됨 -->
+            <button id="pick-button" type="submit" 
+                class="btn btn-outline-dark rounded-0" name="item_picked" value="{{item_pk}}"
+                data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="추가되었습니다">
+                장바구니
+            </button>
             <!-- 버튼을 누르면 장바구니에 담겼다는 popover창이 뜬다 -->
         </div>
     </form>
