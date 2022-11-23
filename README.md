@@ -53,14 +53,12 @@
 ### 기능소개
 <br>
 
+
 -Navar
 ![nava](README.assets/nava1.png)
       - Section션 기능과 오른쪽 장바구니 아이콘 움직임 기능
 
-
-​      
-
-
+![img](README.assets\nava.PNG)
 
 
 
