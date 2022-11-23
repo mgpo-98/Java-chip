@@ -4,6 +4,19 @@
 #### 제작 기간 : 2022-11-09 ~ 2022-11-21
 #### 제작 회원 : 조승윤 오진수 김태형 김민찬 신현강
 #### 서버 주소: http://jchipbean-env.eba-wbdf3m8u.ap-northeast-2.elasticbeanstalk.com/
+#### [프로젝트 기획서](https://www.notion.so/hg-edu/19-Java-chip-3b19c81899de4278b0e46ce8e4b216e7)
+
+<hr>
+
+#### 🛠️ 기술 스택
+
+![img](README.assets\활용 기술.PNG)
+
+
+
+### 프로젝트 소개
+
+![img](README.assets\프로젝트 소개.PNG)
 
 <hr>
 
@@ -19,31 +32,44 @@
 - 백/프론트엔드
 - Items 기능구현
 <br>
+
 #### 오진수
 -     PPT
 -     백/프론트엔드
 -     Accounts 기능 구현
 <br>
+
 #### 신현강
--base/index 페이지
+- base/index 페이지
 <br>
 
 #### ⭐조승윤⭐
 - PPT
--백/프론트엔드
--Reviews 기능 구현
+- 백/프론트엔드
+- Reviews 기능 구현
 
 <hr>
+
 ### 기능소개
 <br>
-- Section션 기능과 오른쪽 장바구니 아이콘 움직임 기능
 
-### ![nava](README.assets/nava.PNG)
+-Navar
+![img](README.assets\nava.PNG)
+      - Section션 기능과 오른쪽 장바구니 아이콘 움직임 기능
+
+
+      
+
+
+
+
+
+
+
 
 
 
 ### 프로젝트 후기 
-
 <hr>
 
 #### 김민찬 : 기간이 여유로웠는데 생각보다 오래걸렸고, 저번 프로젝트 때보다는 적극적으로 하려 했다. 마지막 기간에 노트북 이슈로 참여하지 못해서 팀원분들께 매우 미안했고, 아쉬웠다. 에러 발생 시 팀원분들과 소통을 통해 고치려는 노력이 굉장히 좋았다.
