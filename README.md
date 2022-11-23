@@ -9,7 +9,9 @@
 <hr>
 #### 🛠️ 기술 스택
 
-![활용 기술](README.assets/활용 기술1.png)
+
+
+<img src="https://img.shields.io/badge/GitHub-E34F26?style=flat-square&logo=HTML5&logoColor=181717"/>
 
 ### 프로젝트 소개
 
@@ -50,9 +52,11 @@
 ### 기능소개
 <br>
 
+
 -Navar
 
 ![nava](README.assets/nava1.png)
+
 
 
 
