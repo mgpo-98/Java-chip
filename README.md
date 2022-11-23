@@ -7,12 +7,11 @@
 #### [프로젝트 기획서](https://www.notion.so/hg-edu/19-Java-chip-3b19c81899de4278b0e46ce8e4b216e7)
 
 <hr>
-
 #### 🛠️ 기술 스택
 
 
-<img src="https://img.shields.io/badge/GitHub-E34F26?style=flat-square&logo=HTML5&logoColor=181717"/>
 
+<img src="https://img.shields.io/badge/GitHub-E34F26?style=flat-square&logo=HTML5&logoColor=181717"/>
 
 ### 프로젝트 소개
 
@@ -55,10 +54,9 @@
 
 
 -Navar
-![nava](README.assets/nava1.png)
-      - Section션 기능과 오른쪽 장바구니 아이콘 움직임 기능
 
-![img](README.assets\nava.PNG)
+![nava](README.assets/nava1.png)
+
 
 
 
