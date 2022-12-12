@@ -10,7 +10,7 @@
 
 ### [배포 주소](http://jchipbean-env.eba-wbdf3m8u.ap-northeast-2.elasticbeanstalk.com/)
 
-### [프로젝트 기획서](https://www.notion.so/hg-edu/19-Java-chip-3b19c81899de4278b0e46ce8e4b216e7)
+### [프로젝트 기획서]([https://www.notion.so/hg-edu/19-Java-chip-3b19c81899de4278b0e46ce8e4b216e7](https://www.notion.so/hg-edu/5f6d392f69ee46e9b261897d63c4efc6))
 
 ## 🎯 기획 목표
 
